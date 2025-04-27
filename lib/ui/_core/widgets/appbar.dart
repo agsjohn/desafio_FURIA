@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 AppBar getAppBar({required BuildContext context, String? title}) {
   double largura = MediaQuery.of(context).size.width;
+  //double altura = MediaQuery.of(context).size.height;
 
   return AppBar(
     title: title != null ? Text(title) : null,
@@ -17,7 +18,9 @@ AppBar getAppBar({required BuildContext context, String? title}) {
               borderRadius: BorderRadius.circular(100),
             ),
             width: largura * 0.16,
+            // width: altura * 0.11,
             height: largura * 0.16,
+            // height: altura * 0.11,
             margin: EdgeInsets.only(right: 8),
             child: CircleAvatar(
               radius: 100,

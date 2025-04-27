@@ -8,19 +8,37 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double largura = MediaQuery.of(context).size.width;
+    double altura = MediaQuery.of(context).size.height;
+
+    double fontSize = altura > largura ? largura * 0.05 : altura * 0.04;
+    double buttonFontSize = altura > largura ? largura * 0.04 : altura * 0.035;
+    double buttonSize = altura > largura ? double.infinity : altura * 0.4;
+
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: Stack(
         children: [
           Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              padding: EdgeInsets.symmetric(horizontal: altura * 0.025),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 32,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset('assets/logo_furia.png', width: largura * 1),
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      fontSize =
+                          altura > largura ? largura * 0.04 : altura * 0.1;
+                      double imageSize =
+                          altura > largura ? altura * 0.4 : largura * 0.3;
+                      return Image.asset(
+                        'assets/logo_furia1.png',
+                        height: imageSize,
+                      );
+                    },
+                  ),
                   Column(
+                    spacing: altura * 0.04,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -29,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                             "Desperte seu poder. Abrace a ",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: largura * 0.05,
+                              fontSize: fontSize,
                             ),
                           ),
                           Text(
@@ -37,35 +55,35 @@ class HomeScreen extends StatelessWidget {
                             style: TextStyle(
                               color: AppColors.mainColor,
                               fontWeight: FontWeight.bold,
-                              fontSize: largura * 0.05,
+                              fontSize: fontSize,
                             ),
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ButtonStyle(),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return ChatScreen();
-                            },
+                      SizedBox(
+                        width: buttonSize,
+                        child: ElevatedButton(
+                          style: ButtonStyle(),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return ChatScreen();
+                                },
+                              ),
+                            );
+                          },
+                          child: Text(
+                            "Bora!",
+                            style: TextStyle(
+                              fontSize: buttonFontSize,
+                              color: Colors.black,
+                            ),
                           ),
-                        );
-                      },
-                      child: Text(
-                        "Bora!",
-                        style: TextStyle(
-                          fontSize: largura * 0.04,
-                          color: Colors.black,
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),

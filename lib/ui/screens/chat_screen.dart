@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/data/respostas.dart';
 import 'package:my_app/ui/_core/app_colors.dart';
@@ -18,13 +17,15 @@ class ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double largura = MediaQuery.of(context).size.width;
+    //double largura = MediaQuery.of(context).size.width;
+    double altura = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: getAppBar(context: context),
-      // bottomSheet: Padding(
-      //   padding: const EdgeInsets.all(8.0),
-      //   child: TextFormField(),
-      // ),
+      bottomSheet: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: TextFormField(),
+      ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24),
         child: Column(
@@ -40,7 +41,7 @@ class ChatScreenState extends State<ChatScreen> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(bottom: largura * 0.15),
+              margin: EdgeInsets.only(bottom: altura * 0.06),
               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
