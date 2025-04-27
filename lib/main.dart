@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_app/ui/_core/app_theme.dart';
-import 'package:my_app/ui/splash/splash_screen.dart';
+import 'package:my_app/ui/screens/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -9,17 +9,18 @@ void main() async {
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
   ]);
-  runApp(MyApp());
+  runApp(FuriaChatApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class FuriaChatApp extends StatelessWidget {
+  const FuriaChatApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'FURIA Chatbot',
       theme: AppTheme.appTheme,
-      home: SplashScreen(),
+      home: HomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

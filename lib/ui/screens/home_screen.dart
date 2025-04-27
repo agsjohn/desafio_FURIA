@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/ui/_core/app_colors.dart';
-import 'package:my_app/ui/home/home_screen.dart';
+import 'package:my_app/ui/screens/chat_screen.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class SplashScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return HomeScreen();
+                              return ChatScreen();
                             },
                           ),
                         );
