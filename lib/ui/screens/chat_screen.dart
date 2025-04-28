@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/data/furia_data.dart';
 import 'package:my_app/data/respostas.dart';
 import 'package:my_app/ui/_core/app_colors.dart';
 import 'package:my_app/ui/_core/widgets/appbar.dart';
 import 'package:my_app/ui/_core/widgets/chat_message.dart';
+import 'package:my_app/ui/_core/widgets/build_text_response.dart';
+import 'package:provider/provider.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -14,11 +17,14 @@ class ChatScreen extends StatefulWidget {
 class ChatScreenState extends State<ChatScreen> {
   List<ChatMessage> messages = [];
   ScrollController scrollController = ScrollController();
+  late FuriaData furiaData;
 
   @override
   Widget build(BuildContext context) {
     //double largura = MediaQuery.of(context).size.width;
     double altura = MediaQuery.of(context).size.height;
+
+    furiaData = Provider.of<FuriaData>(context);
 
     return Scaffold(
       appBar: getAppBar(context: context),
@@ -45,13 +51,7 @@ class ChatScreenState extends State<ChatScreen> {
               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    buildOptionButton('Últimos jogos'),
-                    buildOptionButton('Próximos jogos'),
-                    buildOptionButton('Info do time'),
-                  ],
-                ),
+                child: Row(children: [buildOptionButton('Jogadores')]),
               ),
             ),
           ],
@@ -61,15 +61,40 @@ class ChatScreenState extends State<ChatScreen> {
   }
 
   void userClick(String option) {
+    List<String> palavrasNegrito = [
+      'FURIA!',
+      'Data de entrada',
+      'Nome completo',
+      'Nick',
+      'País',
+      'Jogador',
+      'Função',
+    ];
+
     setState(() {
-      messages.add(ChatMessage(text: option, isUser: true));
       messages.add(
         ChatMessage(
-          text: respostas[option] ?? 'Desculpe, não entendi.',
-          isUser: false,
+          isUser: true,
+          child: Text(option, style: TextStyle(color: Colors.white)),
         ),
       );
+
+      Widget responseWidget;
+      if (respostas[option] == 0) {
+        String jogadoresTexto = furiaData.toStringListJogadores();
+        responseWidget = Text.rich(
+          TextSpan(children: buildTextSpans(jogadoresTexto, palavrasNegrito)),
+        );
+      } else {
+        responseWidget = Text(
+          'Desculpe, não entendi.',
+          style: TextStyle(color: Colors.black),
+        );
+      }
+
+      messages.add(ChatMessage(isUser: false, child: responseWidget));
     });
+
     Future.delayed(Duration(milliseconds: 100), () {
       scrollController.animateTo(
         scrollController.position.maxScrollExtent,

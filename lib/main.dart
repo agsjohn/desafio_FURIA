@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_app/data/furia_data.dart';
 import 'package:my_app/ui/_core/app_theme.dart';
-//import 'package:my_app/ui/screens/chat_screen.dart';
 import 'package:my_app/ui/screens/home_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,7 +11,16 @@ void main() async {
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
   ]);
-  runApp(FuriaChatApp());
+  FuriaData furiaData = FuriaData();
+  await furiaData.getData();
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) {
+        return furiaData;
+      },
+      child: FuriaChatApp(),
+    ),
+  );
 }
 
 class FuriaChatApp extends StatelessWidget {

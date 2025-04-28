@@ -1,0 +1,494 @@
+
+{
+  "jogadores": [
+      {
+        "pais": "Brasil",
+        "nome": "FalleN",
+        "funcao": "Líder dentro do jogo",
+        "nome_completo": "Gabriel Toledo de Alcântara Sguario",
+        "data_entrada": "2023-07-03"
+      },
+      {
+        "pais": "Letónia",
+        "nome": "YEKINDAR",
+        "funcao": "Em pé",
+        "nome_completo": "Mareks Gaļinskis",
+        "data_entrada": "2025-04-22"
+      },
+      {
+        "pais": "Cazaquistão",
+        "nome": "molodoy",
+        "funcao": null,
+        "nome_completo": "Danil Golubenko",
+        "ajuste": null,
+        "data_entrada": "2025-04-11"
+      },
+      {
+        "pais": "Brasil",
+        "nome": "KSCERATO",
+        "funcao": null,
+        "nome_completo": "Kaike Silva Cerato",
+        "data_entrada": "2018-02-06"
+      },
+      {
+        "pais": "Brasil",
+        "nome": "Yuurih",
+        "funcao": null,
+        "nome_completo": "Yuri Gomes dos Santos Boian",
+        "data_entrada": "2017-11-08"
+      },
+      {
+        "pais": "Espanha",
+        "nome": "Hepa",
+        "funcao": "Treinador",
+        "nome_completo": "Juan Borges",
+        "data_entrada": "2025-01-15"
+      },
+      {
+        "pais": "Brasil",
+        "nome": "Sidde",
+        "funcao": "Treinador",
+        "nome_completo": "Sidnei Macedo Pereira Filho",
+        "data_entrada": "2024-07-09"
+      }
+  ],
+  "ultimos_resultados":[
+      {
+        "jogo": "CS2",
+        "time1": "FURIA",
+        "pais_time1": "br",
+        "apelido_time1": "FURIA",
+        "placar_time1": 0,
+        "time2": "The MongolZ",
+        "pais_time2": "mn",
+        "apelido_time2": "MongolZ",
+        "placar_time2": 2,
+        "evento": "PGL Bucharest 2025",
+        "data_hora": "2025-04-09T12:45:00Z"
+      },
+      {
+        "jogo": "CS2",
+        "time1": "FURIA",
+        "pais_time1": "br",
+        "apelido_time1": "FURIA",
+        "placar_time1": 0,
+        "time2": "Virtus.pro",
+        "pais_time2": "ru",
+        "apelido_time2": "VP",
+        "placar_time2": 2,
+        "evento": "PGL Bucharest 2025",
+        "data_hora": "2025-04-08T08:55:00Z"
+      },
+      {
+        "jogo": "CS2",
+        "time1": "FURIA",
+        "pais_time1": "br",
+        "apelido_time1": "FURIA",
+        "placar_time1": 1,
+        "time2": "Complexity",
+        "pais_time2": "us",
+        "apelido_time2": "coL",
+        "placar_time2": 2,
+        "evento": "PGL Bucharest 2025",
+        "data_hora": "2025-04-07T14:00:00Z"
+      },
+      {
+        "jogo": "CS2",
+        "time1": "FURIA",
+        "pais_time1": "br",
+        "apelido_time1": "FURIA",
+        "placar_time1": 2,
+        "time2": "Betclic Apogee Esports",
+        "pais_time2": "pl",
+        "apelido_time2": "BAE",
+        "placar_time2": 0,
+        "evento": "PGL Bucharest 2025",
+        "data_hora": "2025-04-06T15:30:00Z"
+      },
+      {
+        "jogo": "CS2",
+        "time1": "FURIA",
+        "pais_time1": "br",
+        "apelido_time1": "FURIA",
+        "placar_time1": 1,
+        "time2": "M80",
+        "pais_time2": "north-america-region",
+        "apelido_time2": "M80",
+        "placar_time2": 2,
+        "evento": "BLAST Open Spring 2025",
+        "data_hora": "2025-03-22T13:15:00Z"
+      },
+      {
+        "jogo": "CS2",
+        "time1": "FURIA",
+        "pais_time1": "br",
+        "apelido_time1": "FURIA",
+        "placar_time1": 0,
+        "time2": "Natus Vincere",
+        "pais_time2": "ua",
+        "apelido_time2": "NAVI",
+        "placar_time2": 2,
+        "evento": "BLAST Open Spring 2025",
+        "data_hora": "2025-03-20T19:15:00Z"
+      },
+      {
+        "jogo": "CS2",
+        "time1": "FURIA",
+        "pais_time1": "br",
+        "apelido_time1": "FURIA",
+        "placar_time1": 1,
+        "time2": "Team Falcons",
+        "pais_time2": "dk",
+        "apelido_time2": "Falcons",
+        "placar_time2": 2,
+        "evento": "ESL Pro League Season 21",
+        "data_hora": "2025-03-10T17:55:00Z"
+      },
+      {
+        "jogo": "CS2",
+        "time1": "FURIA",
+        "pais_time1": "br",
+        "apelido_time1": "FURIA",
+        "placar_time1": 2,
+        "time2": "MIBR",
+        "pais_time2": "br",
+        "apelido_time2": "MIBR",
+        "placar_time2": 1,
+        "evento": "ESL Pro League Season 21",
+        "data_hora": "2025-03-09T17:00:00Z"
+      },
+      {
+        "jogo": "CS2",
+        "time1": "FURIA",
+        "pais_time1": "br",
+        "apelido_time1": "FURIA",
+        "placar_time1": 0,
+        "time2": "Team Liquid",
+        "pais_time2": "us",
+        "apelido_time2": "Liquid",
+        "placar_time2": 2,
+        "evento": "ESL Pro League Season 21",
+        "data_hora": "2025-03-08T17:15:00Z"
+      },
+      {
+        "jogo": "CS2",
+        "time1": "FURIA",
+        "pais_time1": "br",
+        "apelido_time1": "FURIA",
+        "placar_time1": 1,
+        "time2": "MOUZ",
+        "pais_time2": "de",
+        "apelido_time2": "MOUZ",
+        "placar_time2": 2,
+        "evento": "ESL Pro League Season 21",
+        "data_hora": "2025-03-07T14:40:00Z"
+      }
+  ],
+  "resultados_da_equipe":[
+      {
+        "Evento": "PGL Bucharest 2025",
+        "Jogo": "CS2",
+        "Organização": "PGL",
+        "Equipe": "FURIA",
+        "Lugar": "12th",
+        "Ganhos": 9375,
+        "Data": "06.04.25 - 13.04.25"
+      },
+      {
+        "Evento": "BLAST Open Spring 2025",
+        "Jogo": "CS2",
+        "Organização": "BLAST",
+        "Equipe": "FURIA",
+        "Lugar": "13th",
+        "Ganhos": 5000,
+        "Data": "19.03.25 - 30.03.25"
+      },
+      {
+        "Evento": "ESL Pro League Season 21",
+        "Jogo": "CS2",
+        "Organização": "ESL",
+        "Equipe": "FURIA",
+        "Lugar": "12th",
+        "Ganhos": 10500,
+        "Data": "01.03.25 - 16.03.25"
+      },
+      {
+        "Evento": "IEM Katowice 2025",
+        "Jogo": "CS2",
+        "Organização": "ESL",
+        "Equipe": "FURIA",
+        "Lugar": "13th",
+        "Ganhos": 10000,
+        "Data": "29.01.25 - 09.02.25"
+      },
+      {
+        "Evento": "Perfect World Shanghai Major 2024: American RMR",
+        "Jogo": "CS2",
+        "Organização": "PGL",
+        "Equipe": "FURIA",
+        "Lugar": "7th",
+        "Ganhos": null,
+        "Data": "12.11.24 - 15.11.24"
+      },
+      {
+        "Evento": "IEM Rio 2024",
+        "Jogo": "CS2",
+        "Organização": "ESL",
+        "Equipe": "FURIA",
+        "Lugar": "3rd",
+        "Ganhos": 20000,
+        "Data": "07.10.24 - 13.10.24"
+      },
+      {
+        "Evento": "ESL Pro League Season 20",
+        "Jogo": "CS2",
+        "Organização": "ESL",
+        "Equipe": "FURIA",
+        "Lugar": "13th",
+        "Ganhos": 17500,
+        "Data": "03.09.24 - 22.09.24"
+      },
+      {
+        "Evento": "BetBoom Dacha Belgrade 2024 #2",
+        "Jogo": "CS2",
+        "Organização": "FISSURE",
+        "Equipe": "FURIA",
+        "Lugar": "5th",
+        "Ganhos": 20000,
+        "Data": "24.08.24 - 01.09.24"
+      },
+      {
+        "Evento": "IEM Cologne 2024",
+        "Jogo": "CS2",
+        "Organização": "ESL",
+        "Equipe": "FURIA",
+        "Lugar": "13th",
+        "Ganhos": 10000,
+        "Data": "07.08.24 - 18.08.24"
+      },
+      {
+        "Evento": "Esports World Cup 2024",
+        "Jogo": "CS2",
+        "Organização": "Esports World Cup Foundation",
+        "Equipe": "FURIA",
+        "Lugar": "5th",
+        "Ganhos": 40000,
+        "Data": "17.07.24 - 21.07.24"
+      },
+      {
+        "Evento": "YaLLa Compass 2024",
+        "Jogo": "CS2",
+        "Organização": "YaLLa Esports",
+        "Equipe": "FURIA",
+        "Lugar": "3rd",
+        "Ganhos": 28000,
+        "Data": "05.06.24 - 09.06.24"
+      },
+      {
+        "Evento": "CCT Season 2 European Series #4",
+        "Jogo": "CS2",
+        "Organização": "Eden Esports",
+        "Equipe": "FURIA",
+        "Lugar": "2nd",
+        "Ganhos": 10000,
+        "Data": "20.05.24 - 02.06.24"
+      },
+      {
+        "Evento": "CCT Season 2 European Series #3",
+        "Jogo": "CS2",
+        "Organização": "Eden Esports",
+        "Equipe": "FURIA",
+        "Lugar": "5th",
+        "Ganhos": 2000,
+        "Data": "13.05.24 - 26.05.24"
+      },
+      {
+        "Evento": "ESL Pro League Season 19",
+        "Jogo": "CS2",
+        "Organização": "ESL",
+        "Equipe": "FURIA",
+        "Lugar": "17th",
+        "Ganhos": 12000,
+        "Data": "23.04.24 - 12.05.24"
+      },
+      {
+        "Evento": "Global Esports Tour Rio de Janeiro 2024",
+        "Jogo": "CS2",
+        "Organização": "CBGE",
+        "Equipe": "FURIA",
+        "Lugar": "5th",
+        "Ganhos": 5000,
+        "Data": "18.04.24 - 21.04.24"
+      },
+      {
+        "Evento": "Intel Extreme Masters Chengdu 2024",
+        "Jogo": "CS2",
+        "Organização": "ESL",
+        "Equipe": "FURIA",
+        "Lugar": "9th",
+        "Ganhos": 5000,
+        "Data": "08.04.24 - 14.04.24"
+      },
+      {
+        "Evento": "PGL Major Copenhagen 2024",
+        "Jogo": "CS2",
+        "Organização": "PGL",
+        "Equipe": "FURIA",
+        "Lugar": "15th",
+        "Ganhos": 20000,
+        "Data": "17.03.24 - 31.03.24"
+      },
+      {
+        "Evento": "PGL Major Copenhagen 2024: American RMR",
+        "Jogo": "CS2",
+        "Organização": "PGL",
+        "Equipe": "FURIA",
+        "Lugar": "1st",
+        "Ganhos": null,
+        "Data": "01.03.24 - 05.03.24"
+      },
+      {
+        "Evento": "Intel Extreme Masters Dallas 2024: South American Qualifier",
+        "Jogo": "CS2",
+        "Organização": "ESL",
+        "Equipe": "FURIA",
+        "Lugar": "2nd",
+        "Ganhos": null,
+        "Data": "22.02.24 - 24.02.24"
+      },
+      {
+        "Evento": "IEM Katowice 2024",
+        "Jogo": "CS2",
+        "Organização": "ESL",
+        "Equipe": "FURIA",
+        "Lugar": "21st",
+        "Ganhos": 2500,
+        "Data": "31.01.24 - 11.02.24"
+      }
+  ],
+  "faq":[
+      {
+          "contato": "https://wa.me/5511993404466",
+          "Quantos torneios jogaram a equipe FURIA CS2?": "O time FURIA Counter-Strike já participou de 129 torneios.",
+          "Qual é o recorde de telespectadores do time FURIA CS2?": "O recorde de 1.428.993 telespectadores de pico (IEM Rio Major 2022).",
+          "Como entrar para uma equipe de esports?": "Para ingressar em uma equipe de esports, foque em aprimorar suas habilidades em um jogo específico e participe de torneios online para ganhar experiência e mostrar suas habilidades. Construa uma presença online, conecte-se com jogadores e influenciadores e participe de eventos locais para aumentar suas chances de ser notado por gerentes de equipe ou olheiros.",
+          "Quem é o líder do time do FURIA CS2 no jogo?":"O líder atualmente é o FalleN (Gabriel Toledo de Alcântara Sguario). Presente Professor.",
+          "Quais são os próximos jogos para o time FURIA CS2?": "Atualmente, não há nenhuma partida na agenda da equipe FURIA Counter-Strike.",
+          "lema": "A FURIA é a sua torcida!"
+      }
+  ],
+  "quiz":[
+      {
+          "1. Em qual ano a Furia foi fundada?":[
+              {
+                  "alternativas":[
+                      "a) 2015",
+                      "b) 2017",
+                      "c) 2018",
+                      "d) 2019"
+                  ],
+                  "resposta": "c"
+              }
+          ],
+          "2. Qual jogador está a mais tempo na Furia CS?":[
+              {
+                  "alternativas":[
+                      "a) FalleN",
+                      "b) KSCERATO",
+                      "c) Yuurih",
+                      "d) molodoy"
+                  ],
+                  "resposta": "d"
+              }
+          ],
+          "3. Quantos anos a dupla YURATO jogam juntos?":[
+              {
+                  "alternativas":[
+                      "a) 6 anos",
+                      "b) 7 anos",
+                      "c) 8 anos",
+                      "d) 5 anos"
+                  ],
+                  "resposta": "a"
+              }
+          ],
+          "4. Quem é o atual capitão da FURIA Esports no CS2?":[
+              {
+                  "alternativas":[
+                      "a) KSCERATO",
+                      "b) Yuurih",
+                      "c) FalleN",
+                      "d) Sidde"
+                  ],
+                  "resposta": "c"
+              }
+          ],
+          "5. Qual jogador foi adicionado como stand-in para o BLAST.tv Austin Major 2025?":[
+              {
+                  "alternativas":[
+                      "a) Gabriel “FalleN” Toledo",
+                      "b) Mareks “YEKINDAR” Gaļinskis",
+                      "c) Marcelo “chelo” Cespedes",
+                      "d) Kaike “KSCERATO” Cerato"
+                  ],
+                  "resposta": "d"
+              }
+          ],
+          "6. Em qual torneio a FURIA conquistou o 3º lugar em 2024?":[
+              {
+                  "alternativas":[
+                      "a) IEM Rio 2024",
+                      "b) ESL Pro League Season 20",
+                      "c) BLAST Premier World Final 2024",
+                      "d) PGL Major Copenhagen 2024"
+                  ],
+                  "resposta": "a"
+              }
+          ],
+          "7. Qual é a função atual de Sid “sidde” Macedo na FURIA?": [
+              {
+                  "alternativas":[
+                      "a) Jogador",
+                      "b) Coach",
+                      "c) Analista",
+                      "d) Gerente de operações"
+                  ],
+                  "resposta": "b"
+              }
+          ],
+          "8. Em abril de 2025, quem foi promovido para o elenco principal da FURIA?":[
+              {
+                  "alternativas":[
+                      "a) Kayke “kye” Bertolucci",
+                      "b) Ilan “havoc” Eloy",
+                      "c) Danil “molodoy” Golubenko",
+                      "d) Luis-Henrique “pryze” Viveiros"
+                  ]
+              }
+          ],
+          "9. Quem foi o jogador da FURIA que se destacou ao ganhar o prêmio de \"MVP\" do IEM Katowice 2022?":[
+              {
+                  "alternativas":[
+                      "a) KSCERATO",
+                      "b) Yuurih",
+                      "c) art",
+                      "d) Saffee"
+                  ],
+                  "resposta": "b"
+              }
+          ],
+          "10. Quem foi o time carrasco da Furia no IEM de 2022, 2023?":[
+              {
+                  "alternativas":[
+                      "a) Heroic",
+                      "b) ",
+                      "c) ",
+                      "d) "
+                  ],
+                  "resposta": "a"
+              }
+          ],
+          "BONUS. Se a Furia veio pra vencer, a Navi veio pra se...": "OPS"
+      }
+  ]
+}
