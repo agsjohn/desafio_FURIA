@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_app/data/model/faq.dart';
 import 'package:my_app/data/model/jogador.dart';
 import 'package:my_app/data/model/resultado_equipe.dart';
 import 'package:my_app/data/model/ultimos_jogos.dart';
@@ -9,13 +10,14 @@ class FuriaData extends ChangeNotifier {
   List<Jogador> listJogadores = [];
   List<UltimosJogos> listUltimosJogos = [];
   List<ResultadoEquipe> listResultadoEquipe = [];
+  List<Faq> listFaq = [];
 
   Future<void> getData() async {
     String jsonString = await rootBundle.loadString('assets/furia.json');
     Map<String, dynamic> data = json.decode(jsonString);
     List<dynamic> jogadoresData = data['jogadores'];
-    for (var jogadoresData in jogadoresData) {
-      Jogador jogador = Jogador.fromJson(jogadoresData);
+    for (var jogadorData in jogadoresData) {
+      Jogador jogador = Jogador.fromJson(jogadorData);
       listJogadores.add(jogador);
     }
 
@@ -34,6 +36,8 @@ class FuriaData extends ChangeNotifier {
       );
       listResultadoEquipe.add(resultadoEquipe);
     }
+
+    listFaq = (data['faq'] as List).map((item) => Faq.fromJson(item)).toList();
   }
 
   String toStringListJogadores() {
@@ -46,6 +50,10 @@ class FuriaData extends ChangeNotifier {
 
   String toStringResultadosEquipe() {
     return "Segue a lista dos últimos ${listResultadoEquipe.length} resultados da equipe da FURIA!\n\n${listResultadoEquipe.map((listElement) => listElement.getResultadoEquipe()).join("\n\n")}";
+  }
+
+  String toStringFaqInicial() {
+    return "O que gostaria de perguntar/saber? \n\n${listFaq[0].perguntas.join("\n")}\n8. Sair";
   }
 
   List<String> getResultadosEquipeEventos() {
