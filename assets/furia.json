@@ -52,7 +52,7 @@
         "data_entrada": "2024-07-09"
       }
   ],
-  "ultimos_resultados":[
+  "ultimos_jogos":[
       {
         "jogo": "CS2",
         "time1": "FURIA",
@@ -190,180 +190,201 @@
         "Jogo": "CS2",
         "Organização": "PGL",
         "Equipe": "FURIA",
-        "Lugar": "12th",
+        "Lugar": "12º",
         "Ganhos": 9375,
-        "Data": "06.04.25 - 13.04.25"
+        "Data inicial": "06/04/2025",
+        "Data final": "13/04/2025"
       },
       {
         "Evento": "BLAST Open Spring 2025",
         "Jogo": "CS2",
         "Organização": "BLAST",
         "Equipe": "FURIA",
-        "Lugar": "13th",
+        "Lugar": "13º",
         "Ganhos": 5000,
-        "Data": "19.03.25 - 30.03.25"
+        "Data inicial": "19/03/2025",
+        "Data final": "30/03/2025"
       },
       {
         "Evento": "ESL Pro League Season 21",
         "Jogo": "CS2",
         "Organização": "ESL",
         "Equipe": "FURIA",
-        "Lugar": "12th",
+        "Lugar": "12º",
         "Ganhos": 10500,
-        "Data": "01.03.25 - 16.03.25"
+        "Data inicial": "01/03/2025",
+        "Data final": "16/03/2025"
       },
       {
         "Evento": "IEM Katowice 2025",
         "Jogo": "CS2",
         "Organização": "ESL",
         "Equipe": "FURIA",
-        "Lugar": "13th",
+        "Lugar": "13º",
         "Ganhos": 10000,
-        "Data": "29.01.25 - 09.02.25"
+        "Data inicial": "29/01/2025",
+        "Data final": "09/02/2025"
       },
       {
         "Evento": "Perfect World Shanghai Major 2024: American RMR",
         "Jogo": "CS2",
         "Organização": "PGL",
         "Equipe": "FURIA",
-        "Lugar": "7th",
+        "Lugar": "7º",
         "Ganhos": null,
-        "Data": "12.11.24 - 15.11.24"
+        "Data inicial": "12/11/2024",
+        "Data final": "15/11/2024"
       },
       {
         "Evento": "IEM Rio 2024",
         "Jogo": "CS2",
         "Organização": "ESL",
         "Equipe": "FURIA",
-        "Lugar": "3rd",
+        "Lugar": "3º",
         "Ganhos": 20000,
-        "Data": "07.10.24 - 13.10.24"
+        "Data inicial": "07/10/2024",
+        "Data final": "13/10/2024"
       },
       {
         "Evento": "ESL Pro League Season 20",
         "Jogo": "CS2",
         "Organização": "ESL",
         "Equipe": "FURIA",
-        "Lugar": "13th",
+        "Lugar": "13º",
         "Ganhos": 17500,
-        "Data": "03.09.24 - 22.09.24"
+        "Data inicial": "03/09/2024",
+        "Data final": "22/09/2024"
       },
       {
         "Evento": "BetBoom Dacha Belgrade 2024 #2",
         "Jogo": "CS2",
         "Organização": "FISSURE",
         "Equipe": "FURIA",
-        "Lugar": "5th",
+        "Lugar": "5º",
         "Ganhos": 20000,
-        "Data": "24.08.24 - 01.09.24"
+        "Data inicial": "24/08/2024",
+        "Data final": "01/09/2024"
       },
       {
         "Evento": "IEM Cologne 2024",
         "Jogo": "CS2",
         "Organização": "ESL",
         "Equipe": "FURIA",
-        "Lugar": "13th",
+        "Lugar": "13º",
         "Ganhos": 10000,
-        "Data": "07.08.24 - 18.08.24"
+        "Data inicial": "07/08/2024",
+        "Data final": "18/08/2024"
       },
       {
         "Evento": "Esports World Cup 2024",
         "Jogo": "CS2",
         "Organização": "Esports World Cup Foundation",
         "Equipe": "FURIA",
-        "Lugar": "5th",
+        "Lugar": "5º",
         "Ganhos": 40000,
-        "Data": "17.07.24 - 21.07.24"
+        "Data inicial": "17/07/2024",
+        "Data final": "21/07/2024"
       },
       {
         "Evento": "YaLLa Compass 2024",
         "Jogo": "CS2",
         "Organização": "YaLLa Esports",
         "Equipe": "FURIA",
-        "Lugar": "3rd",
+        "Lugar": "3º",
         "Ganhos": 28000,
-        "Data": "05.06.24 - 09.06.24"
+        "Data inicial": "05/06/2024",
+        "Data final": "09/06/2024"
       },
       {
         "Evento": "CCT Season 2 European Series #4",
         "Jogo": "CS2",
         "Organização": "Eden Esports",
         "Equipe": "FURIA",
-        "Lugar": "2nd",
+        "Lugar": "2º",
         "Ganhos": 10000,
-        "Data": "20.05.24 - 02.06.24"
+        "Data inicial": "20/05/2024",
+        "Data final": "02/06/2024"
       },
       {
         "Evento": "CCT Season 2 European Series #3",
         "Jogo": "CS2",
         "Organização": "Eden Esports",
         "Equipe": "FURIA",
-        "Lugar": "5th",
+        "Lugar": "5º",
         "Ganhos": 2000,
-        "Data": "13.05.24 - 26.05.24"
+        "Data inicial": "13/05/2024",
+        "Data final": "26/05/2024"
       },
       {
         "Evento": "ESL Pro League Season 19",
         "Jogo": "CS2",
         "Organização": "ESL",
         "Equipe": "FURIA",
-        "Lugar": "17th",
+        "Lugar": "17º",
         "Ganhos": 12000,
-        "Data": "23.04.24 - 12.05.24"
+        "Data inicial": "23/04/2024",
+        "Data final": "12/05/2024"
       },
       {
         "Evento": "Global Esports Tour Rio de Janeiro 2024",
         "Jogo": "CS2",
         "Organização": "CBGE",
         "Equipe": "FURIA",
-        "Lugar": "5th",
+        "Lugar": "5º",
         "Ganhos": 5000,
-        "Data": "18.04.24 - 21.04.24"
+        "Data inicial": "18/04/2024",
+        "Data final": "21/04/2024"
+        
       },
       {
         "Evento": "Intel Extreme Masters Chengdu 2024",
         "Jogo": "CS2",
         "Organização": "ESL",
         "Equipe": "FURIA",
-        "Lugar": "9th",
+        "Lugar": "9º",
         "Ganhos": 5000,
-        "Data": "08.04.24 - 14.04.24"
+        "Data inicial": "08/04/2024",
+        "Data final": "14/04/2024"
       },
       {
         "Evento": "PGL Major Copenhagen 2024",
         "Jogo": "CS2",
         "Organização": "PGL",
         "Equipe": "FURIA",
-        "Lugar": "15th",
+        "Lugar": "15º",
         "Ganhos": 20000,
-        "Data": "17.03.24 - 31.03.24"
+        "Data inicial": "17/03/2024",
+        "Data final": "31/03/2024"
       },
       {
         "Evento": "PGL Major Copenhagen 2024: American RMR",
         "Jogo": "CS2",
         "Organização": "PGL",
         "Equipe": "FURIA",
-        "Lugar": "1st",
+        "Lugar": "1º",
         "Ganhos": null,
-        "Data": "01.03.24 - 05.03.24"
+        "Data inicial": "01/03/2024",
+        "Data final": "05/03/2024"
       },
       {
         "Evento": "Intel Extreme Masters Dallas 2024: South American Qualifier",
         "Jogo": "CS2",
         "Organização": "ESL",
         "Equipe": "FURIA",
-        "Lugar": "2nd",
+        "Lugar": "2º",
         "Ganhos": null,
-        "Data": "22.02.24 - 24.02.24"
+        "Data inicial": "22/02/2024",
+        "Data final": "24/02/2024"
       },
       {
         "Evento": "IEM Katowice 2024",
         "Jogo": "CS2",
         "Organização": "ESL",
         "Equipe": "FURIA",
-        "Lugar": "21st",
+        "Lugar": "21º",
         "Ganhos": 2500,
-        "Data": "31.01.24 - 11.02.24"
+        "Data inicial": "31/01/2024",
+        "Data final": "11/02/2024"
       }
   ],
   "faq":[

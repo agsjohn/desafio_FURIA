@@ -5,7 +5,8 @@ class ResultadoEquipe {
   final String equipe;
   final String lugar;
   final int? ganhos;
-  final String data;
+  final String dataInicial;
+  final String dataFinal;
 
   ResultadoEquipe({
     required this.evento,
@@ -14,7 +15,8 @@ class ResultadoEquipe {
     required this.equipe,
     required this.lugar,
     this.ganhos,
-    required this.data,
+    required this.dataInicial,
+    required this.dataFinal,
   });
 
   factory ResultadoEquipe.fromJson(Map<String, dynamic> json) {
@@ -25,7 +27,16 @@ class ResultadoEquipe {
       equipe: json['Equipe'],
       lugar: json['Lugar'],
       ganhos: json['Ganhos'],
-      data: json['Data'],
+      dataInicial: json['Data inicial'],
+      dataFinal: json['Data final'],
     );
+  }
+
+  String getResultadoEquipe() {
+    if (ganhos != null) {
+      return "$evento\nPosição: $lugar lugar\nGanhos: \$$ganhos\nData do evento:\n$dataInicial - $dataFinal";
+    } else {
+      return "$evento\nPosição: $lugar lugar\nSem ganhos\nData do evento:\n$dataInicial - $dataFinal";
+    }
   }
 }

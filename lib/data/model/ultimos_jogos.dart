@@ -1,4 +1,4 @@
-class UltimosResultados {
+class UltimosJogos {
   // String jogo;
   String time1;
   // String pais_time1;
@@ -11,7 +11,7 @@ class UltimosResultados {
   String evento;
   DateTime data_hora;
 
-  UltimosResultados({
+  UltimosJogos({
     // required this.jogo,
     required this.time1,
     // required this.pais_time1,
@@ -25,8 +25,8 @@ class UltimosResultados {
     required this.data_hora,
   });
 
-  factory UltimosResultados.fromJson(Map<String, dynamic> json) {
-    return UltimosResultados(
+  factory UltimosJogos.fromJson(Map<String, dynamic> json) {
+    return UltimosJogos(
       // jogo: json['jogo'],
       time1: json['time1'],
       // pais_time1: json['pais_time1'],
@@ -39,5 +39,27 @@ class UltimosResultados {
       evento: json['evento'],
       data_hora: DateTime.parse(json['data_hora']),
     );
+  }
+
+  String getUltimosJogos() {
+    String day = "${data_hora.day}";
+    String month = "${data_hora.month}";
+    String hour = "${data_hora.hour}";
+    String minute = "${data_hora.minute}";
+
+    if (data_hora.day < 10) {
+      day = "0${data_hora.day}";
+    }
+    if (data_hora.month < 10) {
+      month = "0${data_hora.month}";
+    }
+    if (data_hora.hour < 10) {
+      hour = "0${data_hora.hour}";
+    }
+    if (data_hora.minute < 10) {
+      minute = "0${data_hora.minute}";
+    }
+
+    return "$time1 $placar_time1 x $placar_time2 $time2\n$evento \n$day/$month/${data_hora.year} $hour:$minute";
   }
 }

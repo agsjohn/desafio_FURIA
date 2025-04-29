@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/data/furia_data.dart';
+import 'package:my_app/data/palavras_negrito.dart';
 import 'package:my_app/data/respostas.dart';
 import 'package:my_app/ui/_core/app_colors.dart';
 import 'package:my_app/ui/_core/widgets/appbar.dart';
@@ -47,11 +48,17 @@ class ChatScreenState extends State<ChatScreen> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(bottom: altura * 0.06),
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+              margin: EdgeInsets.only(bottom: altura * 0.08),
+              padding: EdgeInsets.symmetric(horizontal: 8),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: Row(children: [buildOptionButton('Jogadores')]),
+                child: Row(
+                  children: [
+                    buildOptionButton('Jogadores'),
+                    buildOptionButton('Últimos jogos'),
+                    buildOptionButton('Resultados da equipe'),
+                  ],
+                ),
               ),
             ),
           ],
@@ -61,16 +68,6 @@ class ChatScreenState extends State<ChatScreen> {
   }
 
   void userClick(String option) {
-    List<String> palavrasNegrito = [
-      'FURIA!',
-      'Data de entrada',
-      'Nome completo',
-      'Nick',
-      'País',
-      'Jogador',
-      'Função',
-    ];
-
     setState(() {
       messages.add(
         ChatMessage(
@@ -84,6 +81,27 @@ class ChatScreenState extends State<ChatScreen> {
         String jogadoresTexto = furiaData.toStringListJogadores();
         responseWidget = Text.rich(
           TextSpan(children: buildTextSpans(jogadoresTexto, palavrasNegrito)),
+        );
+      } else if (respostas[option] == 1) {
+        var palavras = PalavrasNegrito(
+          maisPalavras: furiaData.getUltimosJogosTimes(),
+        );
+        palavras.addPalavras(furiaData.getUltimosJogoEventos());
+        String ultimosJogos = furiaData.toStringUltimosJogos();
+        responseWidget = Text.rich(
+          TextSpan(
+            children: buildTextSpans(ultimosJogos, palavras.maisPalavras),
+          ),
+        );
+      } else if (respostas[option] == 2) {
+        var palavras = PalavrasNegrito(
+          maisPalavras: furiaData.getResultadosEquipeEventos(),
+        );
+        String resultadosEquipe = furiaData.toStringResultadosEquipe();
+        responseWidget = Text.rich(
+          TextSpan(
+            children: buildTextSpans(resultadosEquipe, palavras.maisPalavras),
+          ),
         );
       } else {
         responseWidget = Text(
