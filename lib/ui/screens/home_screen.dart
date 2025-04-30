@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/ui/_core/app_colors.dart';
+import 'package:my_app/ui/_core/widgets/appbar/status_provider.dart';
 import 'package:my_app/ui/screens/chat_screen.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,10 +11,10 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double largura = MediaQuery.of(context).size.width;
     double altura = MediaQuery.of(context).size.height;
-
     double fontSize = altura > largura ? largura * 0.05 : altura * 0.04;
     double buttonFontSize = altura > largura ? largura * 0.04 : altura * 0.035;
     double buttonSize = altura > largura ? double.infinity : altura * 0.4;
+    final status = Provider.of<StatusProvider>(context, listen: false);
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
@@ -65,6 +67,7 @@ class HomeScreen extends StatelessWidget {
                         child: ElevatedButton(
                           style: ButtonStyle(),
                           onPressed: () {
+                            status.setOnline(false);
                             Navigator.push(
                               context,
                               MaterialPageRoute(

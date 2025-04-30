@@ -4,6 +4,7 @@ import 'package:my_app/data/palavras_negrito.dart';
 import 'package:my_app/data/respostas.dart';
 import 'package:my_app/ui/_core/app_colors.dart';
 import 'package:my_app/ui/_core/widgets/appbar/appbar.dart';
+import 'package:my_app/ui/_core/widgets/appbar/status_provider.dart';
 import 'package:my_app/ui/_core/widgets/chat_message.dart';
 import 'package:my_app/ui/_core/widgets/build_text_response.dart';
 import 'package:provider/provider.dart';
@@ -17,14 +18,24 @@ class ChatScreen extends StatefulWidget {
 
 class ChatScreenState extends State<ChatScreen> {
   List<ChatMessage> messages = [];
-  var scrollController = ScrollController();
   final ScrollController horizontalScrollController = ScrollController();
+  late FuriaData furiaData;
+  late StatusProvider statusProvider;
+  var scrollController = ScrollController();
+  var textFieldController = TextEditingController();
   bool showLeftShadow = false;
   bool showRightShadow = false;
-  var textFieldController = TextEditingController();
-  late FuriaData furiaData;
   bool faq = false;
   bool quiz = false;
+  bool buttons = false;
+
+  void statusListener() {
+    if (statusProvider.isOnline) {
+      setState(() {
+        buttons = true;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,16 +65,22 @@ class ChatScreenState extends State<ChatScreen> {
                   elevation: 0,
                   backgroundColor: Color.fromARGB(0, 255, 255, 255),
                 ),
+                onPressed:
+                    buttons == true
+                        ? () {
+                          String texto = textFieldController.text;
+                          textFieldController.clear();
+                          userClick(texto);
+                        }
+                        : null,
                 child: Icon(
                   Icons.send_rounded,
-                  color: AppColors.mainColor,
+                  color:
+                      buttons == true
+                          ? AppColors.mainColor
+                          : AppColors.lightBlack,
                   size: 24,
                 ),
-                onPressed: () {
-                  String texto = textFieldController.text;
-                  textFieldController.clear();
-                  userClick(texto);
-                },
               ),
             ),
           ),
@@ -266,10 +283,14 @@ class ChatScreenState extends State<ChatScreen> {
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
-          foregroundColor: AppColors.mainColor,
-          side: BorderSide(width: 1.0, color: AppColors.mainColor),
+          foregroundColor:
+              buttons == true ? AppColors.mainColor : AppColors.lightBlack,
+          side: BorderSide(
+            width: 1.0,
+            color: buttons == true ? AppColors.mainColor : AppColors.lightBlack,
+          ),
         ),
-        onPressed: () => userClick(text),
+        onPressed: () => buttons == true ? userClick(text) : null,
         child: Text(text),
       ),
     );
@@ -289,6 +310,12 @@ class ChatScreenState extends State<ChatScreen> {
   void initState() {
     super.initState();
 
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      statusProvider = Provider.of<StatusProvider>(context, listen: false);
+      statusProvider.addListener(statusListener);
+      updateShadowVisibility();
+    });
+
     horizontalScrollController.addListener(updateShadowVisibility);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -298,6 +325,7 @@ class ChatScreenState extends State<ChatScreen> {
 
   @override
   void dispose() {
+    statusProvider.removeListener(statusListener);
     scrollController.dispose();
     horizontalScrollController.dispose();
     super.dispose();

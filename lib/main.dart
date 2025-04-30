@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_app/data/furia_data.dart';
 import 'package:my_app/ui/_core/app_theme.dart';
+import 'package:my_app/ui/_core/widgets/appbar/status_provider.dart';
 import 'package:my_app/ui/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -14,10 +15,11 @@ void main() async {
   FuriaData furiaData = FuriaData();
   await furiaData.getData();
   runApp(
-    ChangeNotifierProvider(
-      create: (context) {
-        return furiaData;
-      },
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => furiaData),
+        ChangeNotifierProvider(create: (context) => StatusProvider()),
+      ],
       child: FuriaChatApp(),
     ),
   );

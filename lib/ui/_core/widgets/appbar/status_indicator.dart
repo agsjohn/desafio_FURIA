@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/ui/_core/widgets/appbar/status_provider.dart';
+import 'package:provider/provider.dart';
 
 class StatusIndicator extends StatefulWidget {
   const StatusIndicator({super.key});
@@ -8,21 +10,22 @@ class StatusIndicator extends StatefulWidget {
 }
 
 class _StatusIndicatorState extends State<StatusIndicator> {
-  bool isOnline = false;
-
   @override
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(milliseconds: 500), () {
-      setState(() {
-        isOnline = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final status = Provider.of<StatusProvider>(context, listen: false);
+      Future.delayed(Duration(seconds: 1), () {
+        status.setOnline(true);
       });
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final isOnline = Provider.of<StatusProvider>(context).isOnline;
+
     return Row(
       children: [
         Container(
