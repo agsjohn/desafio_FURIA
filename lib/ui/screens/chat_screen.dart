@@ -3,7 +3,7 @@ import 'package:my_app/data/furia_data.dart';
 import 'package:my_app/data/palavras_negrito.dart';
 import 'package:my_app/data/respostas.dart';
 import 'package:my_app/ui/_core/app_colors.dart';
-import 'package:my_app/ui/_core/widgets/appbar.dart';
+import 'package:my_app/ui/_core/widgets/appbar/appbar.dart';
 import 'package:my_app/ui/_core/widgets/chat_message.dart';
 import 'package:my_app/ui/_core/widgets/build_text_response.dart';
 import 'package:provider/provider.dart';
