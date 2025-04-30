@@ -2,15 +2,15 @@ class Jogador {
   final String pais;
   final String nome;
   final String? funcao;
-  final String nome_completo;
-  final DateTime data_entrada;
+  final String nomeCompleto;
+  final DateTime dataEntrada;
 
   Jogador({
     required this.pais,
     required this.nome,
     this.funcao,
-    required this.nome_completo,
-    required this.data_entrada,
+    required this.nomeCompleto,
+    required this.dataEntrada,
   });
 
   factory Jogador.fromJson(Map<String, dynamic> json) {
@@ -18,26 +18,26 @@ class Jogador {
       pais: json['pais'],
       nome: json['nome'],
       funcao: json['funcao'],
-      nome_completo: json['nome_completo'],
-      data_entrada: DateTime.parse(json['data_entrada']),
+      nomeCompleto: json['nome_completo'],
+      dataEntrada: DateTime.parse(json['data_entrada']),
     );
   }
 
   String getJogador() {
-    String day = "${data_entrada.day}";
-    String month = "${data_entrada.month}";
+    String day = "${dataEntrada.day}";
+    String month = "${dataEntrada.month}";
 
-    if (data_entrada.day < 10) {
-      day = "0${data_entrada.day}";
+    if (dataEntrada.day < 10) {
+      day = "0${dataEntrada.day}";
     }
-    if (data_entrada.month < 10) {
-      month = "0${data_entrada.month}";
+    if (dataEntrada.month < 10) {
+      month = "0${dataEntrada.month}";
     }
 
     if (funcao == null) {
-      return "Nick: $nome\nPaís: $pais\nFunção: Jogador\nNome completo: $nome_completo\nData de entrada: $day/$month/${data_entrada.year}";
+      return "Nick: $nome\nPaís: $pais\nFunção: Jogador\nNome completo: $nomeCompleto\nData de entrada: $day/$month/${dataEntrada.year}";
     } else {
-      return "Nick: $nome\nPaís: $pais\nFunção: $funcao\nNome completo: $nome_completo\nData de entrada: $day/$month/${data_entrada.year}";
+      return "Nick: $nome\nPaís: $pais\nFunção: $funcao\nNome completo: $nomeCompleto\nData de entrada: $day/$month/${dataEntrada.year}";
     }
   }
 }

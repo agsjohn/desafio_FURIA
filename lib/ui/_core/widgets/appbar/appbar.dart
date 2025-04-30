@@ -12,7 +12,34 @@ AppBar getAppBar({required BuildContext context, String? title}) {
     leadingWidth: 200,
     leading: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: StatusIndicator(),
+      child: Row(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.white),
+              borderRadius: BorderRadius.circular(100),
+            ),
+            width: 58,
+            height: 58,
+            margin: EdgeInsets.only(right: 8),
+            child: CircleAvatar(
+              radius: 100,
+              backgroundImage: AssetImage("assets/logo_furia.png"),
+            ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Furia bot",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+              StatusIndicator(),
+            ],
+          ),
+        ],
+      ),
     ),
     actions: [
       Container(

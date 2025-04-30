@@ -1,65 +1,50 @@
 class UltimosJogos {
-  // String jogo;
   String time1;
-  // String pais_time1;
-  // String apelido_time1;
-  int placar_time1;
+  int placarTime1;
   String time2;
-  // String pais_time2;
-  // String apelido_time2;
-  int placar_time2;
+  int placarTime2;
   String evento;
-  DateTime data_hora;
+  DateTime dataHora;
 
   UltimosJogos({
-    // required this.jogo,
     required this.time1,
-    // required this.pais_time1,
-    // required this.apelido_time1,
-    required this.placar_time1,
+    required this.placarTime1,
     required this.time2,
-    // required this.pais_time2,
-    // required this.apelido_time2,
-    required this.placar_time2,
+    required this.placarTime2,
     required this.evento,
-    required this.data_hora,
+    required this.dataHora,
   });
 
   factory UltimosJogos.fromJson(Map<String, dynamic> json) {
     return UltimosJogos(
-      // jogo: json['jogo'],
       time1: json['time1'],
-      // pais_time1: json['pais_time1'],
-      // apelido_time1: json['apelido_time1'],
-      placar_time1: json['placar_time1'],
+      placarTime1: json['placar_time1'],
       time2: json['time2'],
-      // pais_time2: json['pais_time2'],
-      // apelido_time2: json['apelido_time2'],
-      placar_time2: json['placar_time2'],
+      placarTime2: json['placar_time2'],
       evento: json['evento'],
-      data_hora: DateTime.parse(json['data_hora']),
+      dataHora: DateTime.parse(json['data_hora']),
     );
   }
 
   String getUltimosJogos() {
-    String day = "${data_hora.day}";
-    String month = "${data_hora.month}";
-    String hour = "${data_hora.hour}";
-    String minute = "${data_hora.minute}";
+    String day = "${dataHora.day}";
+    String month = "${dataHora.month}";
+    String hour = "${dataHora.hour}";
+    String minute = "${dataHora.minute}";
 
-    if (data_hora.day < 10) {
-      day = "0${data_hora.day}";
+    if (dataHora.day < 10) {
+      day = "0${dataHora.day}";
     }
-    if (data_hora.month < 10) {
-      month = "0${data_hora.month}";
+    if (dataHora.month < 10) {
+      month = "0${dataHora.month}";
     }
-    if (data_hora.hour < 10) {
-      hour = "0${data_hora.hour}";
+    if (dataHora.hour < 10) {
+      hour = "0${dataHora.hour}";
     }
-    if (data_hora.minute < 10) {
-      minute = "0${data_hora.minute}";
+    if (dataHora.minute < 10) {
+      minute = "0${dataHora.minute}";
     }
 
-    return "$time1 $placar_time1 x $placar_time2 $time2\n$evento \n$day/$month/${data_hora.year} $hour:$minute";
+    return "$time1 $placarTime1 x $placarTime2 $time2\n$evento \n$day/$month/${dataHora.year} $hour:$minute";
   }
 }

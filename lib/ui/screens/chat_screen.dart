@@ -179,96 +179,127 @@ class ChatScreenState extends State<ChatScreen> {
   }
 
   void userClick(String option) {
-    if (option == "") {
-      return;
-    }
+    if (option.isEmpty) return;
+
     setState(() {
-      messages.add(
-        ChatMessage(
-          isUser: true,
-          child: Text(
-            option,
-            style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-          ),
-        ),
-      );
+      addUserMessage(option);
+      animateHorizontalScroll();
 
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        horizontalScrollController.animateTo(
-          horizontalScrollController.position.minScrollExtent,
-          duration: Duration(milliseconds: 150),
-          curve: Curves.easeOut,
-        );
-      });
+      Widget responseWidget = getDefaultResponse();
 
-      Widget responseWidget = Text(
-        'Desculpe, não entendi.',
-        style: TextStyle(color: Colors.black),
-      );
       if (faq == false && quiz == false) {
-        if (respostas.keys.elementAt(0).toLowerCase() == option.toLowerCase()) {
-          String jogadoresTexto = furiaData.toStringListJogadores();
-          responseWidget = Text.rich(
-            TextSpan(children: buildTextSpans(jogadoresTexto, palavrasNegrito)),
-          );
-        } else if (respostas.keys.elementAt(1).toLowerCase() ==
-            option.toLowerCase()) {
-          var palavras = PalavrasNegrito(
-            maisPalavras: furiaData.getUltimosJogosTimes(),
-          );
-          palavras.addPalavras(furiaData.getUltimosJogoEventos());
-          String ultimosJogos = furiaData.toStringUltimosJogos();
-          responseWidget = Text.rich(
-            TextSpan(
-              children: buildTextSpans(ultimosJogos, palavras.maisPalavras),
-            ),
-          );
-        } else if (respostas.keys.elementAt(2).toLowerCase() ==
-            option.toLowerCase()) {
-          var palavras = PalavrasNegrito(
-            maisPalavras: furiaData.getResultadosEquipeEventos(),
-          );
-          String resultadosEquipe = furiaData.toStringResultadosEquipe();
-          responseWidget = Text.rich(
-            TextSpan(
-              children: buildTextSpans(resultadosEquipe, palavras.maisPalavras),
-            ),
-          );
-        } else if (respostas.keys.elementAt(3).toLowerCase() ==
-            option.toLowerCase()) {
-          String faqInicial = furiaData.toStringFaqInicial();
-          faq = true;
-          responseWidget = Text.rich(
-            TextSpan(children: buildTextSpans(faqInicial, numerosNegrito)),
-          );
-        }
+        responseWidget = handleReponses(option);
       } else if (faq == true) {
-        int? escolha = int.tryParse(option);
-        if (escolha != null) {
-          if (escolha == furiaData.listFaq[0].perguntas.length + 1) {
-            String faqSair = "Você saiu do FAQ. ";
-            faq = false;
-            responseWidget = Text.rich(
-              TextSpan(children: buildTextSpans(faqSair, numerosNegrito)),
-            );
-          } else {
-            String faqInicial = "\n\n${furiaData.toStringFaqInicial()}";
-            responseWidget = Text.rich(
-              TextSpan(
-                children: buildTextSpans(
-                  furiaData.listFaq.elementAt(0).respostas[escolha - 1] +
-                      faqInicial,
-                  numerosNegrito,
-                ),
-              ),
-            );
-          }
-        }
+        responseWidget = handleFaq(option);
       }
 
       messages.add(ChatMessage(isUser: false, child: responseWidget));
     });
 
+    animateVerticalScroll();
+  }
+
+  void addUserMessage(String option) {
+    messages.add(
+      ChatMessage(
+        isUser: true,
+        child: Text(option, style: TextStyle(color: Colors.black)),
+      ),
+    );
+  }
+
+  void animateHorizontalScroll() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      horizontalScrollController.animateTo(
+        horizontalScrollController.position.minScrollExtent,
+        duration: Duration(milliseconds: 150),
+        curve: Curves.easeOut,
+      );
+    });
+  }
+
+  Widget getDefaultResponse() {
+    return Text(
+      'Desculpe, não entendi.',
+      style: TextStyle(color: Colors.black),
+    );
+  }
+
+  Widget handleReponses(String option) {
+    for (int i = 0; i < respostas.length; i++) {
+      if (respostas.keys.elementAt(i).toLowerCase() == option.toLowerCase()) {
+        return buildResponseForOption(i);
+      }
+    }
+    return getDefaultResponse();
+  }
+
+  Widget buildResponseForOption(int index) {
+    switch (index) {
+      case 0:
+        String jogadoresTexto = furiaData.toStringListJogadores();
+        return Text.rich(
+          TextSpan(children: buildTextSpans(jogadoresTexto, palavrasNegrito)),
+        );
+      case 1:
+        var palavras = PalavrasNegrito(
+          maisPalavras: furiaData.getUltimosJogosTimes(),
+        );
+        palavras.addPalavras(furiaData.getUltimosJogoEventos());
+        String ultimosJogos = furiaData.toStringUltimosJogos();
+        return Text.rich(
+          TextSpan(
+            children: buildTextSpans(ultimosJogos, palavras.maisPalavras),
+          ),
+        );
+      case 2:
+        var palavras = PalavrasNegrito(
+          maisPalavras: furiaData.getResultadosEquipeEventos(),
+        );
+        String resultadosEquipe = furiaData.toStringResultadosEquipe();
+        return Text.rich(
+          TextSpan(
+            children: buildTextSpans(resultadosEquipe, palavras.maisPalavras),
+          ),
+        );
+      case 3:
+        String faqInicial = furiaData.toStringFaqInicial();
+        faq = true;
+        return Text.rich(
+          TextSpan(children: buildTextSpans(faqInicial, numerosNegrito)),
+        );
+      default:
+        return getDefaultResponse();
+    }
+  }
+
+  Widget handleFaq(String option) {
+    int? escolha = int.tryParse(option);
+    if (escolha != null) {
+      if (escolha == furiaData.listFaq[0].perguntas.length + 1) {
+        faq = false;
+        return Text.rich(
+          TextSpan(
+            children: buildTextSpans("Você saiu do FAQ. ", numerosNegrito),
+          ),
+        );
+      } else {
+        String faqInicial = "\n\n${furiaData.toStringFaqInicial()}";
+        return Text.rich(
+          TextSpan(
+            children: buildTextSpans(
+              furiaData.listFaq.elementAt(0).respostas[escolha - 1] +
+                  faqInicial,
+              numerosNegrito,
+            ),
+          ),
+        );
+      }
+    }
+    return getDefaultResponse();
+  }
+
+  void animateVerticalScroll() {
     Future.delayed(Duration(milliseconds: 100), () {
       scrollController.animateTo(
         scrollController.position.maxScrollExtent,
