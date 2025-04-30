@@ -48,7 +48,7 @@ class ChatScreenState extends State<ChatScreen> {
               ),
             ),
             suffixIcon: Container(
-              margin: EdgeInsets.symmetric(vertical: 8),
+              margin: EdgeInsets.only(top: 8, bottom: 8, right: 8),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
@@ -162,6 +162,9 @@ class ChatScreenState extends State<ChatScreen> {
   }
 
   void userClick(String option) {
+    if (option == "") {
+      return;
+    }
     setState(() {
       messages.add(
         ChatMessage(

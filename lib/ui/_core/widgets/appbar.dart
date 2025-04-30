@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
 AppBar getAppBar({required BuildContext context, String? title}) {
-  double largura = MediaQuery.of(context).size.width;
-  //double altura = MediaQuery.of(context).size.height;
-
   return AppBar(
     title: title != null ? Text(title) : null,
     centerTitle: true,
     surfaceTintColor: Colors.black,
     shadowColor: Colors.white,
     automaticallyImplyLeading: false,
+    toolbarHeight: 84,
+    leadingWidth: 200,
     leading: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
@@ -19,10 +18,8 @@ AppBar getAppBar({required BuildContext context, String? title}) {
               border: Border.all(color: Colors.white),
               borderRadius: BorderRadius.circular(100),
             ),
-            width: largura * 0.16,
-            // width: altura * 0.11,
-            height: largura * 0.16,
-            // height: altura * 0.11,
+            width: 58,
+            height: 58,
             margin: EdgeInsets.only(right: 8),
             child: CircleAvatar(
               radius: 100,
@@ -35,10 +32,7 @@ AppBar getAppBar({required BuildContext context, String? title}) {
             children: [
               Text(
                 "Furia bot",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: largura * 0.045,
-                ),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               Row(
                 children: [
@@ -49,8 +43,8 @@ AppBar getAppBar({required BuildContext context, String? title}) {
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(100),
                     ),
-                    width: largura * 0.03,
-                    height: largura * 0.03,
+                    width: 12,
+                    height: 12,
                   ),
                   Text("Online"),
                 ],
@@ -60,8 +54,6 @@ AppBar getAppBar({required BuildContext context, String? title}) {
         ],
       ),
     ),
-    toolbarHeight: largura * 0.2,
-    leadingWidth: largura * 0.8,
     actions: [
       Container(
         padding: EdgeInsets.only(right: 16),

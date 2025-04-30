@@ -9,6 +9,8 @@ class ChatMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double largura = MediaQuery.of(context).size.width;
+
     return Container(
       margin: EdgeInsets.symmetric(vertical: 4.0),
       child: Row(
@@ -17,45 +19,15 @@ class ChatMessage extends StatelessWidget {
         children: [
           Container(
             padding: EdgeInsets.all(12.0),
-            constraints: BoxConstraints(maxWidth: 250),
+            constraints: BoxConstraints(maxWidth: largura * 0.7),
             decoration: BoxDecoration(
               color: isUser ? AppColors.mainColor : Colors.grey[300],
               borderRadius: BorderRadius.circular(8.0),
             ),
-            child: child, // Aqui mudou!
+            child: child,
           ),
         ],
       ),
     );
   }
-
-  // final String text;
-  // final bool isUser;
-
-  // const ChatMessage({super.key, required this.text, required this.isUser});
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Container(
-  //     margin: EdgeInsets.symmetric(vertical: 4.0),
-  //     child: Row(
-  //       mainAxisAlignment:
-  //           isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
-  //       children: [
-  //         Container(
-  //           padding: EdgeInsets.all(12.0),
-  //           constraints: BoxConstraints(maxWidth: 250),
-  //           decoration: BoxDecoration(
-  //             color: isUser ? AppColors.mainColor : Colors.grey[300],
-  //             borderRadius: BorderRadius.circular(8.0),
-  //           ),
-  //           child: Text(
-  //             text,
-  //             style: TextStyle(color: isUser ? Colors.white : Colors.black),
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 }
