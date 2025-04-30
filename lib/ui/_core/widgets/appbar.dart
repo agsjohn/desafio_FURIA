@@ -50,7 +50,7 @@ AppBar getAppBar({required BuildContext context, String? title}) {
                     width: largura * 0.03,
                     height: largura * 0.03,
                   ),
-                  Text("Online now"),
+                  Text("Online"),
                 ],
               ),
             ],
@@ -61,11 +61,14 @@ AppBar getAppBar({required BuildContext context, String? title}) {
     toolbarHeight: largura * 0.2,
     leadingWidth: largura * 0.8,
     actions: [
-      IconButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        icon: Icon(Icons.close),
+      Container(
+        padding: EdgeInsets.only(right: 16),
+        child: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.close, size: 24),
+        ),
       ),
     ],
   );

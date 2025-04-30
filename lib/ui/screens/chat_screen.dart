@@ -33,14 +33,14 @@ class ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: getAppBar(context: context),
       bottomNavigationBar: Container(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(bottom: 24, right: 23, left: 22),
         child: TextField(
           controller: textFieldController,
           decoration: InputDecoration(
-            prefixIcon: Icon(Icons.search),
-            hintText: "Type a message",
+            contentPadding: EdgeInsets.only(left: 24),
+            hintText: "Digite sua mensagem",
             border: OutlineInputBorder(
-              // borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(16),
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 1,
@@ -48,13 +48,17 @@ class ChatScreenState extends State<ChatScreen> {
               ),
             ),
             suffixIcon: Container(
-              margin: EdgeInsets.all(8),
+              margin: EdgeInsets.symmetric(vertical: 8),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
                   backgroundColor: Color.fromARGB(0, 255, 255, 255),
                 ),
-                child: Icon(Icons.send_rounded, color: AppColors.mainColor),
+                child: Icon(
+                  Icons.send_rounded,
+                  color: AppColors.mainColor,
+                  size: 24,
+                ),
                 onPressed: () {
                   String texto = textFieldController.text;
                   textFieldController.clear();
@@ -79,10 +83,11 @@ class ChatScreenState extends State<ChatScreen> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(left: 8, right: 8, top: 4),
+              padding: EdgeInsets.only(top: 4),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
+                  spacing: 12,
                   children:
                       faq == false
                           ? [
@@ -115,7 +120,10 @@ class ChatScreenState extends State<ChatScreen> {
       messages.add(
         ChatMessage(
           isUser: true,
-          child: Text(option, style: TextStyle(color: Colors.white)),
+          child: Text(
+            option,
+            style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+          ),
         ),
       );
 
@@ -198,8 +206,8 @@ class ChatScreenState extends State<ChatScreen> {
   }
 
   Widget buildOptionButton(String text) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.mainColor,
