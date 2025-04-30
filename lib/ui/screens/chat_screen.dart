@@ -18,6 +18,9 @@ class ChatScreen extends StatefulWidget {
 class ChatScreenState extends State<ChatScreen> {
   List<ChatMessage> messages = [];
   var scrollController = ScrollController();
+  final ScrollController horizontalScrollController = ScrollController();
+  bool showLeftShadow = false;
+  bool showRightShadow = false;
   var textFieldController = TextEditingController();
   late FuriaData furiaData;
   bool faq = false;
@@ -25,9 +28,6 @@ class ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //double largura = MediaQuery.of(context).size.width;
-    // double altura = MediaQuery.of(context).size.height;
-
     furiaData = Provider.of<FuriaData>(context);
 
     return Scaffold(
@@ -82,31 +82,77 @@ class ChatScreenState extends State<ChatScreen> {
                 },
               ),
             ),
-            Container(
-              padding: EdgeInsets.only(top: 4),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  spacing: 12,
-                  children:
-                      faq == false
-                          ? [
-                            buildOptionButton('Jogadores'),
-                            buildOptionButton('Últimos jogos'),
-                            buildOptionButton('Resultados da equipe'),
-                            buildOptionButton('Faq'),
-                          ]
-                          : [
-                            buildOptionButton('1'),
-                            buildOptionButton('2'),
-                            buildOptionButton('3'),
-                            buildOptionButton('4'),
-                            buildOptionButton('5'),
-                            buildOptionButton('6'),
-                            buildOptionButton('7'),
-                            buildOptionButton('8'),
-                          ],
-                ),
+            SizedBox(
+              height: 65,
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: SingleChildScrollView(
+                      controller: horizontalScrollController,
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        spacing: 12,
+                        children:
+                            (faq == false
+                                    ? [
+                                      'Jogadores',
+                                      'Últimos jogos',
+                                      'Resultados da equipe',
+                                      'Faq',
+                                    ]
+                                    : List<String>.generate(
+                                      8,
+                                      (i) => '${i + 1}',
+                                    ))
+                                .map(
+                                  (text) =>
+                                      Container(child: buildOptionButton(text)),
+                                )
+                                .toList(),
+                      ),
+                    ),
+                  ),
+
+                  if (showLeftShadow)
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        width: 24,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Theme.of(context).scaffoldBackgroundColor,
+                              Theme.of(
+                                context,
+                              ).scaffoldBackgroundColor.withAlpha(0),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+
+                  if (showRightShadow)
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        width: 24,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.centerRight,
+                            end: Alignment.centerLeft,
+                            colors: [
+                              Theme.of(context).scaffoldBackgroundColor,
+                              Theme.of(
+                                context,
+                              ).scaffoldBackgroundColor.withAlpha(0),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
               ),
             ),
           ],
@@ -126,6 +172,14 @@ class ChatScreenState extends State<ChatScreen> {
           ),
         ),
       );
+
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        horizontalScrollController.animateTo(
+          horizontalScrollController.position.minScrollExtent,
+          duration: Duration(milliseconds: 150),
+          curve: Curves.easeOut,
+        );
+      });
 
       Widget responseWidget = Text(
         'Desculpe, não entendi.',
@@ -170,7 +224,6 @@ class ChatScreenState extends State<ChatScreen> {
         }
       } else if (faq == true) {
         int? escolha = int.tryParse(option);
-        print(escolha);
         if (escolha != null) {
           if (escolha == furiaData.listFaq[0].perguntas.length + 1) {
             String faqSair = "Você saiu do FAQ. ";
@@ -219,9 +272,31 @@ class ChatScreenState extends State<ChatScreen> {
     );
   }
 
+  void updateShadowVisibility() {
+    final maxScroll = horizontalScrollController.position.maxScrollExtent;
+    final offset = horizontalScrollController.offset;
+
+    setState(() {
+      showLeftShadow = offset > 0;
+      showRightShadow = offset < maxScroll;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    horizontalScrollController.addListener(updateShadowVisibility);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      updateShadowVisibility();
+    });
+  }
+
   @override
   void dispose() {
     scrollController.dispose();
+    horizontalScrollController.dispose();
     super.dispose();
   }
 }

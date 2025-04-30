@@ -7,6 +7,8 @@ AppBar getAppBar({required BuildContext context, String? title}) {
   return AppBar(
     title: title != null ? Text(title) : null,
     centerTitle: true,
+    surfaceTintColor: Colors.black,
+    shadowColor: Colors.white,
     automaticallyImplyLeading: false,
     leading: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
