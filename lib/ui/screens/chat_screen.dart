@@ -3,6 +3,8 @@ import 'package:my_app/data/furia_data.dart';
 import 'package:my_app/data/palavras_negrito.dart';
 import 'package:my_app/data/respostas.dart';
 import 'package:my_app/ui/_core/app_colors.dart';
+import 'package:my_app/ui/_core/app_themes/app_theme_manager.dart';
+import 'package:my_app/ui/_core/app_themes/app_theme1.dart';
 import 'package:my_app/ui/_core/widgets/appbar/appbar.dart';
 import 'package:my_app/ui/_core/widgets/appbar/status_provider.dart';
 import 'package:my_app/ui/_core/widgets/chat_message.dart';
@@ -21,6 +23,7 @@ class ChatScreenState extends State<ChatScreen> {
   final ScrollController horizontalScrollController = ScrollController();
   late FuriaData furiaData;
   late StatusProvider statusProvider;
+  late AppThemeManager appThemeManager;
   var scrollController = ScrollController();
   var textFieldController = TextEditingController();
   bool showLeftShadow = false;
@@ -39,6 +42,7 @@ class ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    appThemeManager = Provider.of<AppThemeManager>(context);
     furiaData = Provider.of<FuriaData>(context);
 
     return Scaffold(
@@ -61,10 +65,7 @@ class ChatScreenState extends State<ChatScreen> {
             suffixIcon: Container(
               margin: EdgeInsets.only(top: 8, bottom: 8, right: 8),
               child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  backgroundColor: Color.fromARGB(0, 255, 255, 255),
-                ),
+                style: AppTheme1.iconButtonStyle,
                 onPressed:
                     buttons == true
                         ? () {
@@ -77,7 +78,7 @@ class ChatScreenState extends State<ChatScreen> {
                   Icons.send_rounded,
                   color:
                       buttons == true
-                          ? AppColors.mainColor
+                          ? appThemeManager.mainColor
                           : AppColors.lightBlack,
                   size: 24,
                 ),
@@ -313,14 +314,10 @@ class ChatScreenState extends State<ChatScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: OutlinedButton(
-        style: OutlinedButton.styleFrom(
-          foregroundColor:
-              buttons == true ? AppColors.mainColor : AppColors.lightBlack,
-          side: BorderSide(
-            width: 1.0,
-            color: buttons == true ? AppColors.mainColor : AppColors.lightBlack,
-          ),
-        ),
+        style:
+            buttons == true
+                ? ButtonStyle()
+                : appThemeManager.outlineButtonStyle,
         onPressed: () => buttons == true ? userClick(text) : null,
         child: Text(text),
       ),

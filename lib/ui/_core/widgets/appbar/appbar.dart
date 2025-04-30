@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/ui/_core/app_themes/app_theme_manager.dart';
 import 'package:my_app/ui/_core/widgets/appbar/status_indicator.dart';
+import 'package:provider/provider.dart';
 
 AppBar getAppBar({required BuildContext context, String? title}) {
+  var appThemeManager = Provider.of<AppThemeManager>(context);
+
   return AppBar(
     title: title != null ? Text(title) : null,
     centerTitle: true,
+    backgroundColor: appThemeManager.theme.scaffoldBackgroundColor,
     surfaceTintColor: Colors.black,
-    shadowColor: Colors.white,
+    shadowColor: appThemeManager.mainColor,
     automaticallyImplyLeading: false,
     toolbarHeight: 84,
     leadingWidth: 200,
@@ -42,13 +47,19 @@ AppBar getAppBar({required BuildContext context, String? title}) {
       ),
     ),
     actions: [
+      IconButton(
+        icon: Icon(Icons.color_lens, size: 24),
+        onPressed: () {
+          appThemeManager.toggleTheme();
+        },
+      ),
       Container(
         padding: EdgeInsets.only(right: 16),
         child: IconButton(
+          icon: Icon(Icons.close, size: 24),
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.close, size: 24),
         ),
       ),
     ],

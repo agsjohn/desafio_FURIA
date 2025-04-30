@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/ui/_core/app_colors.dart';
+import 'package:my_app/ui/_core/app_themes/app_theme_manager.dart';
 import 'package:my_app/ui/_core/widgets/appbar/status_provider.dart';
 import 'package:my_app/ui/screens/chat_screen.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,7 @@ class HomeScreen extends StatelessWidget {
     double buttonFontSize = altura > largura ? largura * 0.04 : altura * 0.035;
     double buttonSize = altura > largura ? double.infinity : altura * 0.4;
     final status = Provider.of<StatusProvider>(context, listen: false);
+    var appThemeManager = Provider.of<AppThemeManager>(context);
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
@@ -48,14 +50,20 @@ class HomeScreen extends StatelessWidget {
                           Text(
                             "Desperte seu poder. Abrace a ",
                             style: TextStyle(
-                              color: Colors.white,
+                              color:
+                                  appThemeManager.isTheme1 == true
+                                      ? Colors.white
+                                      : AppColors.mainColor1,
                               fontSize: fontSize,
                             ),
                           ),
                           Text(
                             "FURIA!",
                             style: TextStyle(
-                              color: AppColors.mainColor,
+                              color:
+                                  appThemeManager.isTheme1 == true
+                                      ? AppColors.mainColor
+                                      : AppColors.lightMainColor1,
                               fontWeight: FontWeight.bold,
                               fontSize: fontSize,
                             ),
@@ -65,7 +73,6 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(
                         width: buttonSize,
                         child: ElevatedButton(
-                          style: ButtonStyle(),
                           onPressed: () {
                             status.setOnline(false);
                             Navigator.push(

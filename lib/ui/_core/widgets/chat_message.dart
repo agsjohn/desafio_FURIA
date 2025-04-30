@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/ui/_core/app_colors.dart';
+import 'package:my_app/ui/_core/app_themes/app_theme_manager.dart';
+import 'package:provider/provider.dart';
 
 class ChatMessage extends StatelessWidget {
   final Widget child;
@@ -10,6 +11,7 @@ class ChatMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double largura = MediaQuery.of(context).size.width;
+    var appThemeManager = Provider.of<AppThemeManager>(context);
 
     return Container(
       margin: EdgeInsets.symmetric(vertical: 4.0),
@@ -21,7 +23,7 @@ class ChatMessage extends StatelessWidget {
             padding: EdgeInsets.all(12.0),
             constraints: BoxConstraints(maxWidth: largura * 0.7),
             decoration: BoxDecoration(
-              color: isUser ? AppColors.mainColor : Colors.grey[300],
+              color: isUser ? appThemeManager.mainColor : Colors.grey[350],
               borderRadius: BorderRadius.circular(8.0),
             ),
             child: child,
