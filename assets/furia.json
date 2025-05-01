@@ -400,116 +400,106 @@
   ],
   "quiz":[
       {
-          "1. Em qual ano a Furia foi fundada?":[
-              {
-                  "alternativas":[
-                      "a) 2015",
-                      "b) 2017",
-                      "c) 2018",
-                      "d) 2019"
-                  ],
-                  "resposta": "c"
-              }
-          ],
-          "2. Qual jogador está a mais tempo na Furia CS?":[
-              {
-                  "alternativas":[
-                      "a) FalleN",
-                      "b) KSCERATO",
-                      "c) Yuurih",
-                      "d) molodoy"
-                  ],
-                  "resposta": "d"
-              }
-          ],
-          "3. Quantos anos a dupla YURATO jogam juntos?":[
-              {
-                  "alternativas":[
-                      "a) 6 anos",
-                      "b) 7 anos",
-                      "c) 8 anos",
-                      "d) 5 anos"
-                  ],
-                  "resposta": "a"
-              }
-          ],
-          "4. Quem é o atual capitão da FURIA Esports no CS2?":[
-              {
-                  "alternativas":[
-                      "a) KSCERATO",
-                      "b) Yuurih",
-                      "c) FalleN",
-                      "d) Sidde"
-                  ],
-                  "resposta": "c"
-              }
-          ],
-          "5. Qual jogador foi adicionado como stand-in para o BLAST.tv Austin Major 2025?":[
-              {
-                  "alternativas":[
-                      "a) Gabriel “FalleN” Toledo",
-                      "b) Mareks “YEKINDAR” Gaļinskis",
-                      "c) Marcelo “chelo” Cespedes",
-                      "d) Kaike “KSCERATO” Cerato"
-                  ],
-                  "resposta": "d"
-              }
-          ],
-          "6. Em qual torneio a FURIA conquistou o 3º lugar em 2024?":[
-              {
-                  "alternativas":[
-                      "a) IEM Rio 2024",
-                      "b) ESL Pro League Season 20",
-                      "c) BLAST Premier World Final 2024",
-                      "d) PGL Major Copenhagen 2024"
-                  ],
-                  "resposta": "a"
-              }
-          ],
-          "7. Qual é a função atual de Sid “sidde” Macedo na FURIA?": [
-              {
-                  "alternativas":[
-                      "a) Jogador",
-                      "b) Coach",
-                      "c) Analista",
-                      "d) Gerente de operações"
-                  ],
-                  "resposta": "b"
-              }
-          ],
-          "8. Em abril de 2025, quem foi promovido para o elenco principal da FURIA?":[
-              {
-                  "alternativas":[
-                      "a) Kayke “kye” Bertolucci",
-                      "b) Ilan “havoc” Eloy",
-                      "c) Danil “molodoy” Golubenko",
-                      "d) Luis-Henrique “pryze” Viveiros"
-                  ]
-              }
-          ],
-          "9. Quem foi o jogador da FURIA que se destacou ao ganhar o prêmio de \"MVP\" do IEM Katowice 2022?":[
-              {
-                  "alternativas":[
-                      "a) KSCERATO",
-                      "b) Yuurih",
-                      "c) art",
-                      "d) Saffee"
-                  ],
-                  "resposta": "b"
-              }
-          ],
-          "10. Quem foi o time carrasco da Furia no IEM de 2022, 2023?":[
-              {
-                  "alternativas":[
-                      "a) Heroic",
-                      "b) ",
-                      "c) ",
-                      "d) "
-                  ],
-                  "resposta": "a"
-              }
-          ],
-          "BONUS. Se a Furia veio pra vencer, a Navi veio pra se...": "OPS"
+        "pergunta": "1. Em qual ano a Furia foi fundada?",
+        "alternativas":[
+          "a) 2015",
+          "b) 2017",
+          "c) 2018",
+          "d) 2019"
+        ],
+        "resposta": "b"
+      },
+      {
+        "pergunta":"2. Qual jogador está a mais tempo na Furia CS?",
+        "alternativas":[
+          "a) FalleN",
+          "b) KSCERATO",
+          "c) Yuurih",
+          "d) molodoy"
+        ],
+        "resposta": "c"
+      },
+      {
+        "pergunta": "3. Quantos anos a dupla YURATO jogam juntos?",
+        "alternativas":[
+          "a) 6 anos",
+          "b) 7 anos",
+          "c) 8 anos",
+          "d) 5 anos"
+        ],
+        "resposta": "b"
+      },
+      {
+        "pergunta":"4. Quem é o atual capitão da FURIA Esports no CS2?",
+        "alternativas":[
+          "a) KSCERATO",
+          "b) Yuurih",
+          "c) FalleN",
+          "d) Sidde"
+        ],
+        "resposta": "c"
+      },
+      {"pergunta":"5. Qual jogador foi adicionado como stand-in para o BLAST.tv Austin Major 2025?",
+        "alternativas":[
+          "a) Gabriel “FalleN” Toledo",
+          "b) Mareks “YEKINDAR” Gaļinskis",
+          "c) Marcelo “chelo” Cespedes",
+          "d) Kaike “KSCERATO” Cerato"
+        ],
+        "resposta": "b"
+      },
+      {
+        "pergunta":"6. Em qual torneio a FURIA conquistou o 3º lugar em 2024?",
+        "alternativas":[
+          "a) IEM Rio 2024",
+          "b) ESL Pro League Season 20",
+          "c) BLAST Premier World Final 2024",
+          "d) PGL Major Copenhagen 2024"
+        ],
+        "resposta": "a"
+      },
+      {
+        "pergunta":"7. Qual é a função atual de Sid “sidde” Macedo na FURIA?",
+        "alternativas":[
+          "a) Jogador",
+          "b) Coach",
+          "c) Analista",
+          "d) Gerente de operações"
+        ],
+        "resposta": "b"
+      },
+      {
+        "pergunta":"8. Em abril de 2025, quem foi promovido para o elenco principal da FURIA?",
+        "alternativas":[
+          "a) Kayke “kye” Bertolucci",
+          "b) Ilan “havoc” Eloy",
+          "c) Danil “molodoy” Golubenko",
+          "d) Luis-Henrique “pryze” Viveiros"
+        ],
+        "resposta": "c"
+      },
+      {
+        "pergunta":"9. Quem foi o jogador da FURIA que se destacou ao ganhar o prêmio de \"MVP\" do IEM Katowice 2022?",
+        "alternativas":[
+          "a) KSCERATO",
+          "b) Yuurih",
+          "c) art",
+          "d) Saffee"
+        ],
+        "resposta": "a"
+      },
+      {
+        "pergunta":"10. Quem foi o time carrasco da Furia no IEM de 2022, 2023?",
+        "alternativas":[
+          "a) Heroic",
+          "b) Cloud9",
+          "c) Navi",
+          "d) Fnatic"
+        ],
+        "resposta": "a"
+      },
+      {
+        "pergunta": "BONUS. Se a Furia veio pra vencer, a Navi veio pra se..."
       }
   ]
 }

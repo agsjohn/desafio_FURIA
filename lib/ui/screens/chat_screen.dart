@@ -8,6 +8,7 @@ import 'package:my_app/ui/_core/widgets/appbar/appbar.dart';
 import 'package:my_app/ui/_core/widgets/appbar/status_provider.dart';
 import 'package:my_app/ui/_core/widgets/chat_message.dart';
 import 'package:my_app/ui/_core/widgets/build_text_response.dart';
+import 'package:my_app/ui/_core/widgets/quiz_validator.dart';
 import 'package:provider/provider.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -30,6 +31,9 @@ class ChatScreenState extends State<ChatScreen> {
   bool faq = false;
   bool quiz = false;
   bool buttons = false;
+  int perguntaQuiz = 0;
+  Future? currentOperation;
+  bool isCancelled = false;
 
   void statusListener() {
     if (statusProvider.isOnline) {
@@ -106,17 +110,20 @@ class ChatScreenState extends State<ChatScreen> {
                       child: Row(
                         spacing: 12,
                         children:
-                            (faq == false
+                            (faq == false && quiz == false
                                     ? [
                                       'Jogadores',
                                       'Últimos jogos',
                                       'Resultados da equipe',
                                       'Faq',
+                                      'Quiz',
                                     ]
-                                    : List<String>.generate(
+                                    : faq == true
+                                    ? List<String>.generate(
                                       8,
                                       (i) => '${i + 1}',
-                                    ))
+                                    )
+                                    : ['a', 'b', 'c', 'd', 'S'])
                                 .map(
                                   (text) =>
                                       Container(child: buildOptionButton(text)),
@@ -174,21 +181,67 @@ class ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  void userClick(String option) {
+  void userClick(String option) async {
+    isCancelled = true;
+    await currentOperation;
+
+    isCancelled = false;
+
+    currentOperation = handleUserClick(option);
+  }
+
+  Future<void> handleUserClick(String option) async {
     if (option.isEmpty) return;
 
     setState(() {
       addUserMessage(option);
       animateHorizontalScroll();
+    });
 
-      Widget responseWidget = getDefaultResponse();
+    Widget responseWidget = getDefaultResponse();
 
-      if (faq == false && quiz == false) {
-        responseWidget = handleReponses(option);
-      } else if (faq == true) {
-        responseWidget = handleFaq(option);
+    if (!faq && !quiz) {
+      responseWidget = handleReponses(option);
+    } else if (faq) {
+      responseWidget = handleFaq(option);
+    } else {
+      if (perguntaQuiz + 2 == furiaData.listQuiz.length) {
+        responseWidget = handleQuiz(option);
+        setState(() {
+          messages.add(ChatMessage(isUser: false, child: responseWidget));
+        });
+        animateVerticalScroll();
+
+        await Future.delayed(Duration(milliseconds: 1000));
+        if (isCancelled || !mounted) return;
+
+        responseWidget = Text.rich(
+          TextSpan(children: buildTextSpans("OPS", numerosNegrito)),
+        );
+        setState(() {
+          messages.add(ChatMessage(isUser: false, child: responseWidget));
+        });
+        animateVerticalScroll();
+
+        await Future.delayed(Duration(milliseconds: 800));
+        if (isCancelled || !mounted) return;
+
+        responseWidget = Text.rich(
+          TextSpan(
+            children: buildTextSpans(
+              "Quiz finalizado, o que gostaria de saber/perguntar?",
+              numerosNegrito,
+            ),
+          ),
+        );
+      } else {
+        responseWidget = handleQuiz(option);
       }
+    }
 
+    if (isCancelled || !mounted) return;
+
+    setState(() {
       messages.add(ChatMessage(isUser: false, child: responseWidget));
     });
 
@@ -264,6 +317,12 @@ class ChatScreenState extends State<ChatScreen> {
         return Text.rich(
           TextSpan(children: buildTextSpans(faqInicial, numerosNegrito)),
         );
+      case 4:
+        String quizInicial = furiaData.listQuiz[perguntaQuiz].getPergunta();
+        quiz = true;
+        return Text.rich(
+          TextSpan(children: buildTextSpans(quizInicial, numerosNegrito)),
+        );
       default:
         return getDefaultResponse();
     }
@@ -293,6 +352,44 @@ class ChatScreenState extends State<ChatScreen> {
       }
     }
     return getDefaultResponse();
+  }
+
+  Widget handleQuiz(String option) {
+    bool repostaCerta = quizValidator(
+      option,
+      furiaData.listQuiz[perguntaQuiz].resposta ?? '',
+    );
+    if (option.toLowerCase() == "s" || option.toLowerCase() == "sair") {
+      perguntaQuiz = 0;
+      quiz = false;
+      return Text.rich(
+        TextSpan(
+          children: buildTextSpans("Você saiu do Quiz. ", numerosNegrito),
+        ),
+      );
+    } else {
+      perguntaQuiz++;
+      String mensagem;
+      if (perguntaQuiz + 1 == furiaData.listQuiz.length) {
+        mensagem =
+            "Parabéns, resposta certa, vamos para a última pergunta: \n\n${furiaData.listQuiz[perguntaQuiz].pergunta}";
+        Text.rich(TextSpan(children: buildTextSpans(mensagem, numerosNegrito)));
+        perguntaQuiz = 0;
+        quiz = false;
+      } else {
+        if (repostaCerta == false) {
+          mensagem =
+              "Puts, parece que você errou, a resposta certa era a letra: " +
+              "${furiaData.listQuiz[perguntaQuiz - 1].resposta?.toUpperCase()}\nPróxima pergunta\n\n${furiaData.listQuiz[perguntaQuiz].getPergunta()}";
+        } else {
+          mensagem =
+              "Parabéns, resposta certa, vamos para a próxima pergunta: \n\n${furiaData.listQuiz[perguntaQuiz].getPergunta()}";
+        }
+      }
+      return Text.rich(
+        TextSpan(children: buildTextSpans(mensagem, numerosNegrito)),
+      );
+    }
   }
 
   void animateVerticalScroll() {

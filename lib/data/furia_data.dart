@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_app/data/model/faq.dart';
 import 'package:my_app/data/model/jogador.dart';
+import 'package:my_app/data/model/quiz.dart';
 import 'package:my_app/data/model/resultado_equipe.dart';
 import 'package:my_app/data/model/ultimos_jogos.dart';
 
@@ -11,6 +12,7 @@ class FuriaData extends ChangeNotifier {
   List<UltimosJogos> listUltimosJogos = [];
   List<ResultadoEquipe> listResultadoEquipe = [];
   List<Faq> listFaq = [];
+  List<Quiz> listQuiz = [];
 
   Future<void> getData() async {
     String jsonString = await rootBundle.loadString('assets/furia.json');
@@ -38,6 +40,12 @@ class FuriaData extends ChangeNotifier {
     }
 
     listFaq = (data['faq'] as List).map((item) => Faq.fromJson(item)).toList();
+
+    List<dynamic> quizData = data['quiz'];
+    for (var x in quizData) {
+      Quiz quiz = Quiz.fromJson(x);
+      listQuiz.add(quiz);
+    }
   }
 
   String toStringListJogadores() {

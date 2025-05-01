@@ -32,4 +32,7 @@ List<String> numerosNegrito = [
   "6. ",
   "7. ",
   "8. ",
+  "9. ",
+  "10. ",
+  "BONUS. ",
 ];
