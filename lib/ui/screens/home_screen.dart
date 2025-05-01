@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                       double imageSize =
                           altura > largura ? altura * 0.4 : largura * 0.3;
                       return Image.asset(
-                        'assets/logo_furia1.png',
+                        'assets/logo_furia_grande.png',
                         height: imageSize,
                       );
                     },
@@ -50,20 +50,14 @@ class HomeScreen extends StatelessWidget {
                           Text(
                             "Desperte seu poder. Abrace a ",
                             style: TextStyle(
-                              color:
-                                  appThemeManager.isTheme1 == true
-                                      ? Colors.white
-                                      : AppColors.mainColor1,
+                              color: AppColors.homeTextColor,
                               fontSize: fontSize,
                             ),
                           ),
                           Text(
                             "FURIA!",
                             style: TextStyle(
-                              color:
-                                  appThemeManager.isTheme1 == true
-                                      ? AppColors.mainColor
-                                      : AppColors.lightMainColor1,
+                              color: appThemeManager.appTheme.mainColor,
                               fontWeight: FontWeight.bold,
                               fontSize: fontSize,
                             ),

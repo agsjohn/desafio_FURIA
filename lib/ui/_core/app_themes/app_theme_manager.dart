@@ -1,24 +1,38 @@
 import 'package:flutter/material.dart';
-import 'app_theme1.dart';
-import 'app_theme2.dart';
+import 'package:my_app/ui/_core/app_colors.dart';
+import 'package:my_app/ui/_core/app_themes/app_theme.dart';
 
 class AppThemeManager with ChangeNotifier {
   bool useTheme1 = true;
+  late AppTheme appTheme = appTheme1;
+
+  AppTheme appTheme1 = AppTheme(
+    mainColor: AppColors.mainColor,
+    secondColor: AppColors.secondColor,
+  );
+
+  AppTheme appTheme2 = AppTheme(
+    mainColor: AppColors.mainColor1,
+    secondColor: AppColors.secondColor1,
+  );
 
   bool get isTheme1 => useTheme1;
 
-  ThemeData get theme => useTheme1 ? AppTheme1.appTheme : AppTheme2.appTheme;
+  ThemeData get theme => appTheme.appTheme;
 
-  Color get mainColor => useTheme1 ? AppTheme1.mainColor : AppTheme2.mainColor;
+  Color get mainColor => appTheme.mainColor;
 
-  ButtonStyle get iconButtonStyle =>
-      useTheme1 ? AppTheme1.iconButtonStyle : AppTheme2.iconButtonStyle;
+  ButtonStyle get iconButtonStyle => appTheme.iconButtonStyle;
 
-  ButtonStyle get outlineButtonStyle =>
-      useTheme1 ? AppTheme1.outlineButtonStyle : AppTheme2.outlineButtonStyle;
+  ButtonStyle get outlineButtonStyle => appTheme.outlineButtonStyle;
 
   void toggleTheme() {
     useTheme1 = !useTheme1;
+    if (useTheme1 == false) {
+      appTheme = appTheme2;
+    } else {
+      appTheme = appTheme1;
+    }
     notifyListeners();
   }
 }

@@ -13,7 +13,7 @@ AppBar getAppBar({required BuildContext context, String? title}) {
     surfaceTintColor: Colors.black,
     shadowColor: appThemeManager.mainColor,
     automaticallyImplyLeading: false,
-    toolbarHeight: 84,
+    toolbarHeight: 70,
     leadingWidth: 200,
     leading: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -24,12 +24,12 @@ AppBar getAppBar({required BuildContext context, String? title}) {
               border: Border.all(color: Colors.white),
               borderRadius: BorderRadius.circular(100),
             ),
-            width: 58,
-            height: 58,
+            width: 50,
+            height: 50,
             margin: EdgeInsets.only(right: 8),
             child: CircleAvatar(
               radius: 100,
-              backgroundImage: AssetImage("assets/logo_furia.png"),
+              backgroundImage: AssetImage("assets/furia_bot.png"),
             ),
           ),
           Column(

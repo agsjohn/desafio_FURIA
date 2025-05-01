@@ -4,7 +4,6 @@ import 'package:my_app/data/palavras_negrito.dart';
 import 'package:my_app/data/respostas.dart';
 import 'package:my_app/ui/_core/app_colors.dart';
 import 'package:my_app/ui/_core/app_themes/app_theme_manager.dart';
-import 'package:my_app/ui/_core/app_themes/app_theme1.dart';
 import 'package:my_app/ui/_core/widgets/appbar/appbar.dart';
 import 'package:my_app/ui/_core/widgets/appbar/status_provider.dart';
 import 'package:my_app/ui/_core/widgets/chat_message.dart';
@@ -54,18 +53,14 @@ class ChatScreenState extends State<ChatScreen> {
           decoration: InputDecoration(
             contentPadding: EdgeInsets.only(left: 24),
             hintText: "Digite sua mensagem",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(
-                color: Colors.black,
-                width: 1,
-                style: BorderStyle.solid,
-              ),
-            ),
+            hintStyle: TextStyle(color: Colors.grey),
             suffixIcon: Container(
+              width: 40,
+              height: 40,
               margin: EdgeInsets.only(top: 8, bottom: 8, right: 8),
-              child: ElevatedButton(
-                style: AppTheme1.iconButtonStyle,
+              padding: EdgeInsets.all(0),
+              child: IconButton(
+                style: appThemeManager.iconButtonStyle,
                 onPressed:
                     buttons == true
                         ? () {
@@ -74,7 +69,7 @@ class ChatScreenState extends State<ChatScreen> {
                           userClick(texto);
                         }
                         : null,
-                child: Icon(
+                icon: Icon(
                   Icons.send_rounded,
                   color:
                       buttons == true

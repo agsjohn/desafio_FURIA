@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/ui/_core/app_colors.dart';
 
-abstract class AppTheme2 {
-  static const Color mainColor = AppColors.lightMainColor1;
-  static const Color secondColor = AppColors.secondColor1;
+class AppTheme {
+  Color mainColor = AppColors.mainColor;
+  Color secondColor = AppColors.secondColor;
 
-  static get iconButtonStyle => ElevatedButton.styleFrom(
+  AppTheme({required this.mainColor, required this.secondColor});
+
+  get iconButtonStyle => ElevatedButton.styleFrom(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     overlayColor: mainColor.withAlpha(50),
     elevation: 0,
+    alignment: Alignment.center,
     backgroundColor: Color.fromARGB(0, 255, 255, 255),
   );
 
-  static get outlineButtonStyle => ButtonStyle(
+  get outlineButtonStyle => ButtonStyle(
     overlayColor: WidgetStatePropertyAll(Colors.transparent),
     foregroundColor: WidgetStatePropertyAll(AppColors.lightBlack),
     side: WidgetStatePropertyAll(
@@ -22,7 +26,24 @@ abstract class AppTheme2 {
     }),
   );
 
-  static ThemeData get appTheme => ThemeData.dark().copyWith(
+  ThemeData get appTheme => ThemeData.dark().copyWith(
+    scaffoldBackgroundColor: AppColors.lightBackgroundColor,
+    textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.white),
+    inputDecorationTheme: InputDecorationTheme(
+      focusColor: mainColor,
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(
+          width: 2,
+          style: BorderStyle.solid,
+          color: mainColor,
+        ),
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(width: 1, style: BorderStyle.solid),
+      ),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         foregroundColor: WidgetStatePropertyAll(Colors.black),
