@@ -8,6 +8,7 @@ import 'package:my_app/ui/_core/widgets/appbar/appbar.dart';
 import 'package:my_app/ui/_core/widgets/appbar/status_provider.dart';
 import 'package:my_app/ui/_core/widgets/chat_message.dart';
 import 'package:my_app/ui/_core/widgets/build_text_response.dart';
+import 'package:my_app/ui/_core/widgets/chat_message_wrapper.dart';
 import 'package:my_app/ui/_core/widgets/quiz_validator.dart';
 import 'package:provider/provider.dart';
 
@@ -20,11 +21,13 @@ class ChatScreen extends StatefulWidget {
 
 class ChatScreenState extends State<ChatScreen> {
   List<ChatMessage> messages = [];
-  final ScrollController horizontalScrollController = ScrollController();
+  final horizontalScrollController = ScrollController();
+  final scrollController = ScrollController();
   late FuriaData furiaData;
   late StatusProvider statusProvider;
   late AppThemeManager appThemeManager;
-  var scrollController = ScrollController();
+  GlobalKey userMessageKey = GlobalKey();
+
   var textFieldController = TextEditingController();
   bool showLeftShadow = false;
   bool showRightShadow = false;
@@ -34,6 +37,7 @@ class ChatScreenState extends State<ChatScreen> {
   int perguntaQuiz = 0;
   Future? currentOperation;
   bool isCancelled = false;
+  double? lastBotMessageHeight;
 
   void statusListener() {
     if (statusProvider.isOnline) {
@@ -95,7 +99,14 @@ class ChatScreenState extends State<ChatScreen> {
                 controller: scrollController,
                 itemCount: messages.length,
                 itemBuilder: (context, index) {
-                  return messages[index];
+                  final msg = messages[index];
+                  bool isLastUserMessage =
+                      msg.isUser &&
+                      index == messages.lastIndexWhere((m) => m.isUser);
+                  return ChatMessageWrapper(
+                    scrollIfLastUser: isLastUserMessage,
+                    child: msg,
+                  );
                 },
               ),
             ),
@@ -195,7 +206,6 @@ class ChatScreenState extends State<ChatScreen> {
 
     setState(() {
       addUserMessage(option);
-      animateHorizontalScroll();
     });
 
     Widget responseWidget = getDefaultResponse();
@@ -207,20 +217,15 @@ class ChatScreenState extends State<ChatScreen> {
     } else {
       if (perguntaQuiz + 2 == furiaData.listQuiz.length) {
         responseWidget = handleQuiz(option);
-        setState(() {
-          messages.add(ChatMessage(isUser: false, child: responseWidget));
-        });
-        animateVerticalScroll();
+        addNoUserMessage(responseWidget);
 
-        await Future.delayed(Duration(milliseconds: 1000));
+        await Future.delayed(Duration(seconds: 5));
         if (isCancelled || !mounted) return;
 
         responseWidget = Text.rich(
           TextSpan(children: buildTextSpans("OPS", numerosNegrito)),
         );
-        setState(() {
-          messages.add(ChatMessage(isUser: false, child: responseWidget));
-        });
+        addNoUserMessage(responseWidget);
         animateVerticalScroll();
 
         await Future.delayed(Duration(milliseconds: 800));
@@ -241,11 +246,16 @@ class ChatScreenState extends State<ChatScreen> {
 
     if (isCancelled || !mounted) return;
 
+    addNoUserMessage(responseWidget);
+
+    animateVerticalScroll();
+    animateHorizontalScroll();
+  }
+
+  void addNoUserMessage(Widget responseWidget) {
     setState(() {
       messages.add(ChatMessage(isUser: false, child: responseWidget));
     });
-
-    animateVerticalScroll();
   }
 
   void addUserMessage(String option) {
@@ -379,7 +389,7 @@ class ChatScreenState extends State<ChatScreen> {
       } else {
         if (repostaCerta == false) {
           mensagem =
-              "Puts, parece que você errou, a resposta certa era a letra: " +
+              "Puts, parece que você errou, a resposta certa era a letra: "
               "${furiaData.listQuiz[perguntaQuiz - 1].resposta?.toUpperCase()}\nPróxima pergunta\n\n${furiaData.listQuiz[perguntaQuiz].getPergunta()}";
         } else {
           mensagem =
@@ -393,13 +403,15 @@ class ChatScreenState extends State<ChatScreen> {
   }
 
   void animateVerticalScroll() {
-    Future.delayed(Duration(milliseconds: 100), () {
-      scrollController.animateTo(
-        scrollController.position.maxScrollExtent,
-        duration: Duration(milliseconds: 300),
-        curve: Curves.easeOut,
-      );
-    });
+    if (messages.length > 3) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        scrollController.animateTo(
+          scrollController.position.maxScrollExtent,
+          duration: Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      });
+    }
   }
 
   Widget buildOptionButton(String text) {
@@ -433,12 +445,7 @@ class ChatScreenState extends State<ChatScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       statusProvider = Provider.of<StatusProvider>(context, listen: false);
       statusProvider.addListener(statusListener);
-      updateShadowVisibility();
-    });
-
-    horizontalScrollController.addListener(updateShadowVisibility);
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+      horizontalScrollController.addListener(updateShadowVisibility);
       updateShadowVisibility();
     });
   }
@@ -448,6 +455,7 @@ class ChatScreenState extends State<ChatScreen> {
     statusProvider.removeListener(statusListener);
     scrollController.dispose();
     horizontalScrollController.dispose();
+    textFieldController.dispose();
     super.dispose();
   }
 }
