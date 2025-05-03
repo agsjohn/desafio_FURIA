@@ -8,11 +8,17 @@ Este projeto é um aplicativo mobile desenvolvido em Flutter que oferece uma exp
 
 ## Funcionalidades
 
-* **Jogadores**: Lista de jogadores e staff com nome, função, país e data de entrada.
-* **Resultados da Equipe**: Desempenho da equipe em torneios recentes, colocação, ganhos e data.
-* **Últimos Jogos**: Histórico dos últimos jogos da FURIA com times, placar, evento, além de data e hora.
-* **FAQ**: Perguntas frequentes sobre a FURIA (com respostas rápidas).
-* **Quiz**: Modo quiz com perguntas de múltipla escolha e verificação de respostas.
+* **Opções de Chat**:
+   É possível tanto escrever as mensagens programadas ou utilizar os botões pré-prontos. 
+   * **Jogadores**: Lista de jogadores e staff com nome, função, país e data de entrada.
+   * **Resultados da Equipe**: Desempenho da equipe em torneios recentes, colocação, ganhos e data.
+   * **Últimos Jogos**: Histórico dos últimos jogos da FURIA com times, placar, evento, além de data e hora.
+   * **FAQ**: Perguntas frequentes sobre a FURIA (com respostas rápidas).
+   * **Quiz**: Modo quiz com perguntas de múltipla escolha e verificação de respostas.
+
+* **Opções de interface**:
+   * **Trocar tema**: Botão de troca de tema do aplicativo.
+   * **Fechar chat**: Ao fechar o chat é possível reabrir, o que limpa as mensagens enviadas.
 
 ## Tecnologias Utilizadas
 
