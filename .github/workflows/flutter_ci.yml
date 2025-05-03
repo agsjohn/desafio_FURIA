@@ -22,8 +22,11 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
-      - name: Upload artifact
-        uses: actions/download-artifact@v4
+      - name: Verificar APK gerado
+        run: ls -lh build/app/outputs/flutter-apk/
+
+      - name: Upload release APK
+        uses: actions/upload-artifact@v4
         with:
           name: release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
