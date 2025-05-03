@@ -32,7 +32,7 @@ Este projeto é um aplicativo mobile desenvolvido em Flutter que oferece uma exp
 
 Para baixar o APK do projeto acesse o link e baixe o arquivo "app-release.apk":  
 
-[FURIA ChatBot APK](https://github.com/agsjohn/vaga_desafio/releases/tag/v1.0)
+[FURIA ChatBot APK](https://github.com/agsjohn/vaga_desafio/releases/latest)
 
 ---
 
