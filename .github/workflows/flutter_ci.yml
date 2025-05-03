@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.0' # Ou a versão que você usa
+          flutter-version: '3.29.3'
 
       - name: Install dependencies
         run: flutter pub get
@@ -23,7 +23,7 @@ jobs:
         run: flutter build apk --release
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
