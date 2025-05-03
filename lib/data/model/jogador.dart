@@ -35,9 +35,9 @@ class Jogador {
     }
 
     if (funcao == null) {
-      return "Nick: $nome\nPaís: $pais\nFunção: Jogador\nNome completo: $nomeCompleto\nData de entrada: $day/$month/${dataEntrada.year}";
+      return "🏷️ Nick: $nome\n🗺️ País: $pais\n📍 Função: Jogador\n🪪 Nome completo: $nomeCompleto\n📅 Data de entrada: $day/$month/${dataEntrada.year}";
     } else {
-      return "Nick: $nome\nPaís: $pais\nFunção: $funcao\nNome completo: $nomeCompleto\nData de entrada: $day/$month/${dataEntrada.year}";
+      return "🏷️ Nick: $nome\n🗺️ País: $pais\n📍 Função: $funcao\n🪪 Nome completo: $nomeCompleto\n📅 Data de entrada: $day/$month/${dataEntrada.year}";
     }
   }
 }

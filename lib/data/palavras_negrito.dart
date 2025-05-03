@@ -15,13 +15,14 @@ List<String> palavrasNegrito = [
   'Nome completo',
   'Nick',
   'País',
-  'Jogador',
   'Função',
   'Posição',
   'Sem ganhos',
   'Ganhos',
   'Data do evento',
 ];
+
+List<String> placarNegrito = ["0 x 2", "1 x 2", "2 x 0", "2 x 1"];
 
 List<String> numerosNegrito = [
   "1. ",

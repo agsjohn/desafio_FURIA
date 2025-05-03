@@ -45,6 +45,6 @@ class UltimosJogos {
       minute = "0${dataHora.minute}";
     }
 
-    return "$time1 $placarTime1 x $placarTime2 $time2\n$evento \n$day/$month/${dataHora.year} $hour:$minute";
+    return "$time1 $placarTime1 x $placarTime2 $time2\n$evento \n🗓️ $day/$month/${dataHora.year} $hour:$minute";
   }
 }

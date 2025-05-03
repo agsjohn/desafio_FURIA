@@ -34,9 +34,9 @@ class ResultadoEquipe {
 
   String getResultadoEquipe() {
     if (ganhos != null) {
-      return "$evento\nPosição: $lugar lugar\nGanhos: \$$ganhos\nData do evento:\n$dataInicial - $dataFinal";
+      return "$evento\n🏅 Posição: $lugar lugar\n💵 Ganhos: \$ $ganhos\nData do evento\n🗓️ $dataInicial - $dataFinal";
     } else {
-      return "$evento\nPosição: $lugar lugar\nSem ganhos\nData do evento:\n$dataInicial - $dataFinal";
+      return "$evento\n🏅 Posição: $lugar lugar\nSem ganhos\nData do evento\n🗓️ $dataInicial - $dataFinal";
     }
   }
 }

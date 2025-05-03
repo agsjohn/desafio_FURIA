@@ -26,7 +26,7 @@ class ChatMessage extends StatelessWidget {
               color:
                   isUser
                       ? appThemeManager.mainColor
-                      : const Color.fromARGB(255, 190, 190, 190),
+                      : const Color.fromRGBO(77, 77, 77, 1),
               borderRadius: BorderRadius.circular(8.0),
             ),
             child: child,

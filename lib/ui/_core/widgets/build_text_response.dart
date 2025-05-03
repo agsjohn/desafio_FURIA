@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 List<TextSpan> buildTextSpans(String texto, List<String> palavrasNegrito) {
   List<TextSpan> spans = [];
   int start = 0;
+  var corTexto = Color.fromRGBO(250, 250, 250, 1);
 
   while (start < texto.length) {
     int? matchIndex;
@@ -21,10 +22,7 @@ List<TextSpan> buildTextSpans(String texto, List<String> palavrasNegrito) {
         spans.add(
           TextSpan(
             text: texto.substring(start, matchIndex),
-            style: TextStyle(
-              fontWeight: FontWeight.normal,
-              color: Colors.black,
-            ),
+            style: TextStyle(fontWeight: FontWeight.normal, color: corTexto),
           ),
         );
       }
@@ -32,7 +30,7 @@ List<TextSpan> buildTextSpans(String texto, List<String> palavrasNegrito) {
       spans.add(
         TextSpan(
           text: matchPalavra,
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+          style: TextStyle(fontWeight: FontWeight.bold, color: corTexto),
         ),
       );
 
@@ -41,7 +39,7 @@ List<TextSpan> buildTextSpans(String texto, List<String> palavrasNegrito) {
       spans.add(
         TextSpan(
           text: texto.substring(start),
-          style: TextStyle(fontWeight: FontWeight.normal, color: Colors.black),
+          style: TextStyle(fontWeight: FontWeight.normal, color: corTexto),
         ),
       );
       break;

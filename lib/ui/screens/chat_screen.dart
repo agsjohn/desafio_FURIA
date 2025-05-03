@@ -301,10 +301,7 @@ class ChatScreenState extends State<ChatScreen> {
           TextSpan(children: buildTextSpans(jogadoresTexto, palavrasNegrito)),
         );
       case 1:
-        var palavras = PalavrasNegrito(
-          maisPalavras: furiaData.getUltimosJogosTimes(),
-        );
-        palavras.addPalavras(furiaData.getUltimosJogoEventos());
+        var palavras = PalavrasNegrito(maisPalavras: placarNegrito);
         String ultimosJogos = furiaData.toStringUltimosJogos();
         return Text.rich(
           TextSpan(
