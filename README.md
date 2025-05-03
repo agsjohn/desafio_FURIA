@@ -26,6 +26,23 @@ Este projeto é um aplicativo mobile desenvolvido em Flutter que oferece uma exp
 * JSON para armazenamento de dados locais
 * GitHub Actions para CI/CD (build de APK)
 
+## Interface
+Utilizei dois temas de cores para a interface, um usando o preto e branco com o contraste da cor dourada, que tive a ideia pelo instagram da Furia (onde os destaques são na cor dourada, e em algumas camisas e outras postagens), e o outro tema somente com a cor preto e branco. 
+
+## Tela inicial
+
+| | Tema principal | Tema secundário |
+| ----------- | ----------- | ----------- |
+| Tela incial | <img src="https://github.com/user-attachments/assets/4f5bca42-7f8f-4c3f-a439-38bc568767ee" width="300"> | <img src="https://github.com/user-attachments/assets/e1879af5-0fab-49e7-b691-c31034ef3be0" width="300"> |
+| Tela do chat | <img src="https://github.com/user-attachments/assets/de475f7b-48c8-4b14-93d3-8f3c1a317981" width="300"> | <img src="https://github.com/user-attachments/assets/29b962f7-64b3-4c25-8e25-74f1336421e6" width="300"> |
+
+
+### Ao iniciar o chat
+Quando o chat é iniciado leva 1 segundo para o bot ficar online (simulando um sistema real)
+
+<img src="https://github.com/user-attachments/assets/3875b447-be5d-4e72-abb5-04b72171c634" width="300">
+<img src="https://github.com/user-attachments/assets/9a326d97-c6ae-41a3-a2df-77dbfc74c491" width="300">
+
 ---
 
 ## Download APK (Release)
