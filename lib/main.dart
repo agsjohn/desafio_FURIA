@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_app/data/furia_data.dart';
-import 'package:my_app/ui/_core/app_themes/app_theme_manager.dart';
-import 'package:my_app/ui/_core/widgets/appbar/status_provider.dart';
-import 'package:my_app/ui/screens/home_screen.dart';
+import 'package:furia_chat_bot/data/furia_data.dart';
+import 'package:furia_chat_bot/ui/_core/app_themes/app_theme_manager.dart';
+import 'package:furia_chat_bot/ui/_core/widgets/appbar/status_provider.dart';
+import 'package:furia_chat_bot/ui/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() async {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/ui/_core/app_themes/app_theme_manager.dart';
-import 'package:my_app/ui/_core/widgets/appbar/status_indicator.dart';
+import 'package:furia_chat_bot/ui/_core/app_themes/app_theme_manager.dart';
+import 'package:furia_chat_bot/ui/_core/widgets/appbar/status_indicator.dart';
 import 'package:provider/provider.dart';
 
 AppBar getAppBar({required BuildContext context, String? title}) {

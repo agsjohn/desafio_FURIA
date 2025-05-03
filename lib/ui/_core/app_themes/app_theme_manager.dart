@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/ui/_core/app_colors.dart';
-import 'package:my_app/ui/_core/app_themes/app_theme.dart';
+import 'package:furia_chat_bot/ui/_core/app_colors.dart';
+import 'package:furia_chat_bot/ui/_core/app_themes/app_theme.dart';
 
 class AppThemeManager with ChangeNotifier {
   bool useTheme1 = true;

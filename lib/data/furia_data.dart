@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_app/data/model/faq.dart';
-import 'package:my_app/data/model/jogador.dart';
-import 'package:my_app/data/model/quiz.dart';
-import 'package:my_app/data/model/resultado_equipe.dart';
-import 'package:my_app/data/model/ultimos_jogos.dart';
+import 'package:furia_chat_bot/data/model/faq.dart';
+import 'package:furia_chat_bot/data/model/jogador.dart';
+import 'package:furia_chat_bot/data/model/quiz.dart';
+import 'package:furia_chat_bot/data/model/resultado_equipe.dart';
+import 'package:furia_chat_bot/data/model/ultimos_jogos.dart';
 
 class FuriaData extends ChangeNotifier {
   List<Jogador> listJogadores = [];

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/ui/_core/widgets/appbar/status_provider.dart';
+import 'package:furia_chat_bot/ui/_core/widgets/appbar/status_provider.dart';
 import 'package:provider/provider.dart';
 
 class StatusIndicator extends StatefulWidget {
