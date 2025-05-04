@@ -80,6 +80,8 @@ class ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
     appThemeManager = Provider.of<AppThemeManager>(context);
     furiaData = Provider.of<FuriaData>(context);
 
+    double altura = MediaQuery.of(context).size.height;
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: getAppBar(context: context),
@@ -107,7 +109,7 @@ class ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                 ),
               ),
               SizedBox(
-                height: 60,
+                height: altura < 700 ? altura * 0.085 : 60,
                 child: Stack(
                   children: [
                     Positioned.fill(
@@ -133,7 +135,7 @@ class ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                       : ['a', 'b', 'c', 'd', 'S'])
                                   .map(
                                     (text) => Container(
-                                      child: buildOptionButton(text),
+                                      child: buildOptionButton(text, altura),
                                     ),
                                   )
                                   .toList(),
@@ -184,35 +186,42 @@ class ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: TextField(
-                  controller: textFieldController,
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(left: 24),
-                    hintText: "Digite sua mensagem",
-                    hintStyle: TextStyle(color: Colors.grey),
-                    suffixIcon: Container(
-                      width: 40,
-                      height: 40,
-                      margin: EdgeInsets.only(right: 8),
-                      padding: EdgeInsets.all(0),
-                      child: IconButton(
-                        style: appThemeManager.iconButtonStyle,
-                        onPressed:
-                            buttons == true
-                                ? () {
-                                  String texto = textFieldController.text;
-                                  textFieldController.clear();
-                                  userClick(texto);
-                                }
-                                : null,
-                        icon: Icon(
-                          Icons.send_rounded,
-                          color:
+                padding: EdgeInsets.only(bottom: 8),
+                child: SizedBox(
+                  height: altura < 700 ? altura * 0.075 : 52,
+                  child: TextField(
+                    style: TextStyle(
+                      fontSize: altura < 700 ? altura * 0.023 : 16,
+                    ),
+                    controller: textFieldController,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(left: 24),
+                      hintText: "Digite sua mensagem",
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                        fontSize: altura < 700 ? altura * 0.023 : 16,
+                      ),
+                      suffixIcon: Container(
+                        padding: EdgeInsets.only(right: 8),
+                        child: IconButton(
+                          padding: EdgeInsets.zero,
+                          style: appThemeManager.iconButtonStyle,
+                          onPressed:
                               buttons == true
-                                  ? appThemeManager.mainColor
-                                  : AppColors.lightBlack,
-                          size: 24,
+                                  ? () {
+                                    String texto = textFieldController.text;
+                                    textFieldController.clear();
+                                    userClick(texto);
+                                  }
+                                  : null,
+                          icon: Icon(
+                            Icons.send_rounded,
+                            color:
+                                buttons == true
+                                    ? appThemeManager.mainColor
+                                    : AppColors.lightBlack,
+                            size: altura < 700 ? altura * 0.035 : 24,
+                          ),
                         ),
                       ),
                     ),
@@ -489,16 +498,36 @@ class ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
     }
   }
 
-  Widget buildOptionButton(String text) {
+  Widget buildOptionButton(String text, double altura) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: OutlinedButton(
         style:
             buttons == true
-                ? ButtonStyle()
-                : appThemeManager.outlineButtonStyle,
+                ? ButtonStyle(
+                  padding: WidgetStatePropertyAll(
+                    EdgeInsets.symmetric(
+                      horizontal: altura < 700 ? altura * 0.02 : 16,
+                    ),
+                  ),
+                )
+                : ButtonStyle(
+                  padding: WidgetStatePropertyAll(
+                    EdgeInsets.symmetric(
+                      horizontal: altura < 700 ? altura * 0.02 : 16,
+                    ),
+                  ),
+                  side: appThemeManager.outlineButtonStyle.side,
+                  foregroundColor:
+                      appThemeManager.outlineButtonStyle.foregroundColor,
+                  backgroundColor:
+                      appThemeManager.outlineButtonStyle.backgroundColor,
+                ),
         onPressed: () => buttons == true ? userClick(text) : null,
-        child: Text(text),
+        child: Text(
+          text,
+          style: TextStyle(fontSize: altura < 700 ? altura * 0.02 : 14),
+        ),
       ),
     );
   }
