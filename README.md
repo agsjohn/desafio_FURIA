@@ -60,6 +60,8 @@ Quando o chat é iniciado leva 1 segundo para o bot ficar online (simulando um s
 ## Download APK (Release)
 
 Para baixar o APK do projeto acesse o link e baixe o arquivo "app-release.apk":  
+ - [Download APK](https://github.com/agsjohn/desafio_FURIA/releases/latest)
+
 ![Screenshot_20250504_120446_One UI Home2](https://github.com/user-attachments/assets/a26ebdd3-fe45-464a-90e4-4e5fdf0346d9)
 
 
@@ -70,12 +72,12 @@ Para baixar o APK do projeto acesse o link e baixe o arquivo "app-release.apk":
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/agsjohn/vaga_desafio.git
+   git clone https://github.com/agsjohn/desafio_FURIA.git
    ```
 2. Acesse o diretório do projeto:
 
    ```bash
-   cd vaga_desafio
+   cd desafio_FURIA
    ```
 3. Instale as dependências:
 
@@ -134,7 +136,7 @@ jobs:
 ## Estrutura do Projeto
 
 ```
-/vaga_desafio
+/desafio_FURIA
 ├─ .github/workflows/flutter_ci.yml   # Pipeline de CI/CD
 ├─ assets/furia.json                  # Dados do time em JSON
 ├─ lib/
@@ -159,4 +161,4 @@ Este projeto foi desenvolvido para fins de demonstração técnica em processo s
 
 ## Licença
 
-Este projeto está sob uma licença de uso exclusivo para fins de avaliação técnica. Veja mais em [LICENSE](https://github.com/agsjohn/vaga_desafio/blob/main/LICENSE)
+Este projeto está sob uma licença de uso exclusivo para fins de avaliação técnica. Veja mais em [LICENSE](https://github.com/agsjohn/desafio_FURIA/blob/main/LICENSE)
