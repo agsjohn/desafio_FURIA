@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:furia_chat_bot/data/furia_data.dart';
 import 'package:furia_chat_bot/data/palavras_negrito.dart';
@@ -11,6 +12,7 @@ import 'package:furia_chat_bot/ui/_core/widgets/build_text_response.dart';
 import 'package:furia_chat_bot/ui/_core/widgets/chat_message_wrapper.dart';
 import 'package:furia_chat_bot/ui/_core/widgets/quiz_validator.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -24,9 +26,11 @@ class ChatScreenState extends State<ChatScreen> {
   final horizontalScrollController = ScrollController();
   final scrollController = ScrollController();
   final textFieldController = TextEditingController();
+  final TapGestureRecognizer tapRecognizer = TapGestureRecognizer();
   late FuriaData furiaData;
   late StatusProvider statusProvider;
   late AppThemeManager appThemeManager;
+
   GlobalKey userMessageKey = GlobalKey();
 
   bool showLeftShadow = false;
@@ -340,6 +344,7 @@ class ChatScreenState extends State<ChatScreen> {
 
   Widget handleFaq(String option) {
     int? escolha = int.tryParse(option);
+    String faqInicial = "\n\n${furiaData.toStringFaqInicial()}";
     if (escolha != null) {
       if (escolha == furiaData.listFaq[0].perguntas.length + 1) {
         faq = false;
@@ -348,8 +353,33 @@ class ChatScreenState extends State<ChatScreen> {
             children: buildTextSpans("Você saiu do FAQ. ", numerosNegrito),
           ),
         );
+      } else if (escolha == 1) {
+        return Text.rich(
+          TextSpan(
+            children: [
+              TextSpan(
+                text: furiaData.listFaq.elementAt(0).respostas[escolha - 1],
+                style: TextStyle(
+                  decoration: TextDecoration.underline,
+                  decorationColor: Colors.blue,
+                  color: Colors.blue,
+                ),
+                recognizer:
+                    tapRecognizer
+                      ..onTap = () {
+                        launchUrl(
+                          Uri.parse(
+                            furiaData.listFaq.elementAt(0).respostas[escolha -
+                                1],
+                          ),
+                        );
+                      },
+              ),
+              TextSpan(children: buildTextSpans(faqInicial, numerosNegrito)),
+            ],
+          ),
+        );
       } else {
-        String faqInicial = "\n\n${furiaData.toStringFaqInicial()}";
         return Text.rich(
           TextSpan(
             children: buildTextSpans(
@@ -452,6 +482,7 @@ class ChatScreenState extends State<ChatScreen> {
 
   @override
   void dispose() {
+    tapRecognizer.dispose();
     statusProvider.removeListener(statusListener);
     scrollController.dispose();
     horizontalScrollController.dispose();
