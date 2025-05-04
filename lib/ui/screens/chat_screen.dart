@@ -21,7 +21,7 @@ class ChatScreen extends StatefulWidget {
   ChatScreenState createState() => ChatScreenState();
 }
 
-class ChatScreenState extends State<ChatScreen> {
+class ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
   List<ChatMessage> messages = [];
   final horizontalScrollController = ScrollController();
   final scrollController = ScrollController();
@@ -42,6 +42,30 @@ class ChatScreenState extends State<ChatScreen> {
   Future? currentOperation;
   bool isCancelled = false;
   double? lastBotMessageHeight;
+  bool isAtBottom = true;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+
+    scrollController.addListener(() {
+      if (scrollController.position.atEdge) {
+        isAtBottom =
+            scrollController.position.pixels ==
+            scrollController.position.maxScrollExtent;
+      } else {
+        isAtBottom = false;
+      }
+    });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      statusProvider = Provider.of<StatusProvider>(context, listen: false);
+      statusProvider.addListener(statusListener);
+      horizontalScrollController.addListener(updateShadowVisibility);
+      updateShadowVisibility();
+    });
+  }
 
   void statusListener() {
     if (statusProvider.isOnline) {
@@ -73,7 +97,9 @@ class ChatScreenState extends State<ChatScreen> {
                     bool isLastUserMessage =
                         msg.isUser &&
                         index == messages.lastIndexWhere((m) => m.isUser);
+                    final isLastIndex = index == messages.length - 1;
                     return ChatMessageWrapper(
+                      key: isLastIndex ? userMessageKey : null,
                       scrollIfLastUser: isLastUserMessage,
                       child: msg,
                     );
@@ -212,9 +238,7 @@ class ChatScreenState extends State<ChatScreen> {
   Future<void> handleUserClick(String option) async {
     if (option.isEmpty) return;
 
-    setState(() {
-      addUserMessage(option);
-    });
+    addUserMessage(option);
 
     Widget responseWidget = getDefaultResponse();
 
@@ -267,12 +291,14 @@ class ChatScreenState extends State<ChatScreen> {
   }
 
   void addUserMessage(String option) {
-    messages.add(
-      ChatMessage(
-        isUser: true,
-        child: Text(option, style: TextStyle(color: Colors.black)),
-      ),
-    );
+    setState(() {
+      messages.add(
+        ChatMessage(
+          isUser: true,
+          child: Text(option, style: TextStyle(color: Colors.black)),
+        ),
+      );
+    });
   }
 
   void animateHorizontalScroll() {
@@ -469,19 +495,20 @@ class ChatScreenState extends State<ChatScreen> {
   }
 
   @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      statusProvider = Provider.of<StatusProvider>(context, listen: false);
-      statusProvider.addListener(statusListener);
-      horizontalScrollController.addListener(updateShadowVisibility);
-      updateShadowVisibility();
-    });
+  void didChangeMetrics() {
+    final wasAtBottom = isAtBottom;
+    if (wasAtBottom) {
+      if (userMessageKey.currentContext != null) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          scrollController.jumpTo(scrollController.position.maxScrollExtent);
+        });
+      }
+    }
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     tapRecognizer.dispose();
     statusProvider.removeListener(statusListener);
     scrollController.dispose();
