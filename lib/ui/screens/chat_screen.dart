@@ -251,7 +251,7 @@ class ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
         responseWidget = handleQuiz(option);
         addNoUserMessage(responseWidget);
 
-        await Future.delayed(Duration(seconds: 5));
+        await cancellableDelay(Duration(seconds: 5));
         if (isCancelled || !mounted) return;
 
         responseWidget = Text.rich(
@@ -260,7 +260,7 @@ class ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
         addNoUserMessage(responseWidget);
         animateVerticalScroll();
 
-        await Future.delayed(Duration(milliseconds: 800));
+        await cancellableDelay(Duration(seconds: 5));
         if (isCancelled || !mounted) return;
 
         responseWidget = Text.rich(
@@ -282,6 +282,17 @@ class ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
 
     animateVerticalScroll();
     animateHorizontalScroll();
+  }
+
+  Future<void> cancellableDelay(Duration duration) async {
+    final int intervalMs = 100;
+    int elapsed = 0;
+
+    while (elapsed < duration.inMilliseconds) {
+      if (isCancelled || !mounted) return;
+      await Future.delayed(Duration(milliseconds: intervalMs));
+      elapsed += intervalMs;
+    }
   }
 
   void addNoUserMessage(Widget responseWidget) {
@@ -406,6 +417,8 @@ class ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
             ],
           ),
         );
+      } else if (escolha < 1 || escolha > 8) {
+        return getDefaultResponse();
       } else {
         return Text.rich(
           TextSpan(
@@ -438,8 +451,13 @@ class ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
       perguntaQuiz++;
       String mensagem;
       if (perguntaQuiz + 1 == furiaData.listQuiz.length) {
-        mensagem =
-            "Parabéns, resposta certa, vamos para a última pergunta: \n\n${furiaData.listQuiz[perguntaQuiz].pergunta}";
+        if (repostaCerta == false) {
+          mensagem =
+              "Putzz, resposta errada, a resposta certa era a letra: ${furiaData.listQuiz[perguntaQuiz - 1].resposta?.toUpperCase()}\nVamos para a última pergunta: \n\n${furiaData.listQuiz[perguntaQuiz].pergunta}";
+        } else {
+          mensagem =
+              "Parabéns, resposta certa, vamos para a última pergunta: \n\n${furiaData.listQuiz[perguntaQuiz].pergunta}";
+        }
         Text.rich(TextSpan(children: buildTextSpans(mensagem, numerosNegrito)));
         perguntaQuiz = 0;
         quiz = false;
