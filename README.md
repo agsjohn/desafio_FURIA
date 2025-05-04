@@ -32,29 +32,38 @@ Este projeto é um aplicativo mobile desenvolvido em Flutter que oferece uma exp
 * GitHub Actions para CI/CD (build de APK)
 
 ## Interface
-Utilizei dois temas de cores para a interface, um usando o preto e branco com o contraste da cor dourada, que tive a ideia pelo instagram da Furia (onde os destaques são na cor dourada, e em algumas camisas e outras postagens), e o outro tema somente com a cor preto e branco. 
+O aplicativo possui duas telas. 
+Foi utilizado dois temas de cores para a interface, um usando o preto e branco com o contraste da cor dourada, que tive a ideia pelo instagram da Furia (onde os destaques são na cor dourada, e em algumas camisas e outras postagens), e o outro tema somente com a cor preto e branco. 
 
 ## Tela inicial
 
 | | Tema principal | Tema secundário |
 | ----------- | ----------- | ----------- |
 | Tela incial | <img src="https://github.com/user-attachments/assets/4f5bca42-7f8f-4c3f-a439-38bc568767ee" width="300"> | <img src="https://github.com/user-attachments/assets/e1879af5-0fab-49e7-b691-c31034ef3be0" width="300"> |
-| Tela do chat | <img src="https://github.com/user-attachments/assets/de475f7b-48c8-4b14-93d3-8f3c1a317981" width="300"> | <img src="https://github.com/user-attachments/assets/29b962f7-64b3-4c25-8e25-74f1336421e6" width="300"> |
+| Tela do chat | <img src="https://github.com/user-attachments/assets/0a7c8e8b-daba-4bcd-ba22-7b0e39bf047d" width="300"> | <img src="https://github.com/user-attachments/assets/c7ac3990-2514-4037-9830-e48cba173ddc" width="300"> |
+
+### Responsividade
+Possui responsividade para telas de diferentes tamanhos/formatos. 
+
+![Screenshot 2025-05-04 132015](https://github.com/user-attachments/assets/a062093b-a9b1-4b3f-80e5-cc1f45758137)
+![screenshot-1746375689542](https://github.com/user-attachments/assets/b47505a9-f0a2-4a4e-8015-adda9501be28)
 
 
 ### Ao iniciar o chat
 Quando o chat é iniciado leva 1 segundo para o bot ficar online (simulando um sistema real)
 
-<img src="https://github.com/user-attachments/assets/3875b447-be5d-4e72-abb5-04b72171c634" width="300">
-<img src="https://github.com/user-attachments/assets/9a326d97-c6ae-41a3-a2df-77dbfc74c491" width="300">
+<img src="https://github.com/user-attachments/assets/750bd1fa-0048-4e95-9ccd-eaacab7ecd64" width="300">
+<img src="https://github.com/user-attachments/assets/3d17019e-3c02-4b91-b1bd-09789b774238" width="300">
 
 ---
 
 ## Download APK (Release)
 
 Para baixar o APK do projeto acesse o link e baixe o arquivo "app-release.apk":  
+ - [Download APK](https://github.com/agsjohn/desafio_FURIA/releases/latest)
 
-[FURIA ChatBot APK](https://github.com/agsjohn/vaga_desafio/releases/latest)
+![Screenshot_20250504_120446_One UI Home2](https://github.com/user-attachments/assets/a26ebdd3-fe45-464a-90e4-4e5fdf0346d9)
+
 
 ---
 
@@ -63,12 +72,12 @@ Para baixar o APK do projeto acesse o link e baixe o arquivo "app-release.apk":
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/agsjohn/vaga_desafio.git
+   git clone https://github.com/agsjohn/desafio_FURIA.git
    ```
 2. Acesse o diretório do projeto:
 
    ```bash
-   cd vaga_desafio
+   cd desafio_FURIA
    ```
 3. Instale as dependências:
 
@@ -127,7 +136,7 @@ jobs:
 ## Estrutura do Projeto
 
 ```
-/vaga_desafio
+/desafio_FURIA
 ├─ .github/workflows/flutter_ci.yml   # Pipeline de CI/CD
 ├─ assets/furia.json                  # Dados do time em JSON
 ├─ lib/
@@ -152,4 +161,4 @@ Este projeto foi desenvolvido para fins de demonstração técnica em processo s
 
 ## Licença
 
-Este projeto está sob uma licença de uso exclusivo para fins de avaliação técnica. Veja mais em [LICENSE](https://github.com/agsjohn/vaga_desafio/blob/main/LICENSE)
+Este projeto está sob uma licença de uso exclusivo para fins de avaliação técnica. Veja mais em [LICENSE](https://github.com/agsjohn/desafio_FURIA/blob/main/LICENSE)
