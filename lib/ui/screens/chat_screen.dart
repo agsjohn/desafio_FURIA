@@ -42,7 +42,7 @@ class ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
   Future? currentOperation;
   bool isCancelled = false;
   double? lastBotMessageHeight;
-  bool isAtBottom = true;
+  bool isAtBottom = false;
 
   @override
   void initState() {
