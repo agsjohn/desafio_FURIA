@@ -8,7 +8,7 @@ Este projeto é um aplicativo mobile desenvolvido em Flutter que oferece uma exp
 
 ## Funcionalidades
 
-* **Opções de Chat**:
+* **Opções de Chat**
    É possível tanto escrever as mensagens programadas ou utilizar os botões pré-prontos. 
    * **Jogadores**: Lista de jogadores e staff com nome, função, país e data de entrada.
    * **Resultados da Equipe**: Desempenho da equipe em torneios recentes, colocação, ganhos e data.
@@ -16,9 +16,14 @@ Este projeto é um aplicativo mobile desenvolvido em Flutter que oferece uma exp
    * **FAQ**: Perguntas frequentes sobre a FURIA (com respostas rápidas).
    * **Quiz**: Modo quiz com perguntas de múltipla escolha e verificação de respostas.
 
-* **Opções de interface**:
+* **Opções de interface**
    * **Trocar tema**: Botão de troca de tema do aplicativo.
    * **Fechar chat**: Ao fechar o chat é possível reabrir, o que limpa as mensagens enviadas.
+
+* **Comportamento Inteligente de Scroll**
+   * O scroll do chat se ajusta automaticamente para exibir a última mensagem.
+   * Caso a nova mensagem seja maior que a altura da tela, o scroll para no início da nova mensagem, permitindo ao usuário ler desde o começo.
+   * Quando o teclado é aberto e o usuário está no final do chat, a rolagem permanece no fim, evitando que a visualização se desloque incorretamente.
 
 ## Tecnologias Utilizadas
 
