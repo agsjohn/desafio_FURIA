@@ -39,22 +39,21 @@ Utilizei dois temas de cores para a interface, um usando o preto e branco com o 
 | | Tema principal | Tema secundário |
 | ----------- | ----------- | ----------- |
 | Tela incial | <img src="https://github.com/user-attachments/assets/4f5bca42-7f8f-4c3f-a439-38bc568767ee" width="300"> | <img src="https://github.com/user-attachments/assets/e1879af5-0fab-49e7-b691-c31034ef3be0" width="300"> |
-| Tela do chat | <img src="https://github.com/user-attachments/assets/de475f7b-48c8-4b14-93d3-8f3c1a317981" width="300"> | <img src="https://github.com/user-attachments/assets/29b962f7-64b3-4c25-8e25-74f1336421e6" width="300"> |
-
+| Tela do chat | <img src="https://github.com/user-attachments/assets/0a7c8e8b-daba-4bcd-ba22-7b0e39bf047d" width="300"> | <img src="https://github.com/user-attachments/assets/c7ac3990-2514-4037-9830-e48cba173ddc" width="300"> |
 
 ### Ao iniciar o chat
 Quando o chat é iniciado leva 1 segundo para o bot ficar online (simulando um sistema real)
 
-<img src="https://github.com/user-attachments/assets/3875b447-be5d-4e72-abb5-04b72171c634" width="300">
-<img src="https://github.com/user-attachments/assets/9a326d97-c6ae-41a3-a2df-77dbfc74c491" width="300">
+<img src="https://github.com/user-attachments/assets/750bd1fa-0048-4e95-9ccd-eaacab7ecd64" width="300">
+<img src="https://github.com/user-attachments/assets/3d17019e-3c02-4b91-b1bd-09789b774238" width="300">
 
 ---
 
 ## Download APK (Release)
 
 Para baixar o APK do projeto acesse o link e baixe o arquivo "app-release.apk":  
+![Screenshot_20250504_120446_One UI Home2](https://github.com/user-attachments/assets/a26ebdd3-fe45-464a-90e4-4e5fdf0346d9)
 
-[FURIA ChatBot APK](https://github.com/agsjohn/vaga_desafio/releases/latest)
 
 ---
 
