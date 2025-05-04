@@ -14,7 +14,8 @@ class HomeScreen extends StatelessWidget {
     double altura = MediaQuery.of(context).size.height;
     double fontSize = altura > largura ? largura * 0.05 : altura * 0.04;
     double buttonFontSize = altura > largura ? largura * 0.04 : altura * 0.035;
-    double buttonSize = altura > largura ? double.infinity : altura * 0.4;
+    double buttonSize = altura > largura ? largura * 0.9 : altura * 0.4;
+    double imageSize = altura > largura ? largura * 0.6 : altura * 0.4;
     final status = Provider.of<StatusProvider>(context, listen: false);
     var appThemeManager = Provider.of<AppThemeManager>(context);
 
@@ -23,74 +24,62 @@ class HomeScreen extends StatelessWidget {
       body: Stack(
         children: [
           Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: altura * 0.025),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  LayoutBuilder(
-                    builder: (context, constraints) {
-                      fontSize =
-                          altura > largura ? largura * 0.04 : altura * 0.1;
-                      double imageSize =
-                          altura > largura ? altura * 0.4 : largura * 0.3;
-                      return Image.asset(
-                        'assets/logo_furia_grande.png',
-                        height: imageSize,
+            child: Column(
+              spacing: altura * 0.04,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/logo_furia_grande.png',
+                  height: imageSize,
+                  alignment: Alignment.bottomCenter,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Desperte seu poder. Abrace a ",
+                      style: TextStyle(
+                        color: AppColors.homeTextColor,
+                        fontSize: fontSize,
+                      ),
+                    ),
+                    Text(
+                      "FURIA!",
+                      style: TextStyle(
+                        color: appThemeManager.appTheme.mainColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: fontSize,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: buttonSize,
+                  height:
+                      altura > largura ? buttonSize * 0.1 : buttonSize * 0.15,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      status.setOnline(false);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return ChatScreen();
+                          },
+                        ),
                       );
                     },
-                  ),
-                  Column(
-                    spacing: altura * 0.04,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Desperte seu poder. Abrace a ",
-                            style: TextStyle(
-                              color: AppColors.homeTextColor,
-                              fontSize: fontSize,
-                            ),
-                          ),
-                          Text(
-                            "FURIA!",
-                            style: TextStyle(
-                              color: appThemeManager.appTheme.mainColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: fontSize,
-                            ),
-                          ),
-                        ],
+                    child: Text(
+                      "Bora!",
+                      style: TextStyle(
+                        fontSize: buttonFontSize,
+                        color: Colors.black,
                       ),
-                      SizedBox(
-                        width: buttonSize,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            status.setOnline(false);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return ChatScreen();
-                                },
-                              ),
-                            );
-                          },
-                          child: Text(
-                            "Bora!",
-                            style: TextStyle(
-                              fontSize: buttonFontSize,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],
