@@ -23,12 +23,12 @@ class ChatScreenState extends State<ChatScreen> {
   List<ChatMessage> messages = [];
   final horizontalScrollController = ScrollController();
   final scrollController = ScrollController();
+  final textFieldController = TextEditingController();
   late FuriaData furiaData;
   late StatusProvider statusProvider;
   late AppThemeManager appThemeManager;
   GlobalKey userMessageKey = GlobalKey();
 
-  var textFieldController = TextEditingController();
   bool showLeftShadow = false;
   bool showRightShadow = false;
   bool faq = false;
@@ -53,140 +53,144 @@ class ChatScreenState extends State<ChatScreen> {
     furiaData = Provider.of<FuriaData>(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: getAppBar(context: context),
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.only(bottom: 24, right: 23, left: 22),
-        child: TextField(
-          controller: textFieldController,
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.only(left: 24),
-            hintText: "Digite sua mensagem",
-            hintStyle: TextStyle(color: Colors.grey),
-            suffixIcon: Container(
-              width: 40,
-              height: 40,
-              margin: EdgeInsets.only(top: 8, bottom: 8, right: 8),
-              padding: EdgeInsets.all(0),
-              child: IconButton(
-                style: appThemeManager.iconButtonStyle,
-                onPressed:
-                    buttons == true
-                        ? () {
-                          String texto = textFieldController.text;
-                          textFieldController.clear();
-                          userClick(texto);
-                        }
-                        : null,
-                icon: Icon(
-                  Icons.send_rounded,
-                  color:
-                      buttons == true
-                          ? appThemeManager.mainColor
-                          : AppColors.lightBlack,
-                  size: 24,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  controller: scrollController,
+                  itemCount: messages.length,
+                  itemBuilder: (context, index) {
+                    final msg = messages[index];
+                    bool isLastUserMessage =
+                        msg.isUser &&
+                        index == messages.lastIndexWhere((m) => m.isUser);
+                    return ChatMessageWrapper(
+                      scrollIfLastUser: isLastUserMessage,
+                      child: msg,
+                    );
+                  },
                 ),
               ),
-            ),
-          ),
-        ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                controller: scrollController,
-                itemCount: messages.length,
-                itemBuilder: (context, index) {
-                  final msg = messages[index];
-                  bool isLastUserMessage =
-                      msg.isUser &&
-                      index == messages.lastIndexWhere((m) => m.isUser);
-                  return ChatMessageWrapper(
-                    scrollIfLastUser: isLastUserMessage,
-                    child: msg,
-                  );
-                },
+              SizedBox(
+                height: 60,
+                child: Stack(
+                  children: [
+                    Positioned.fill(
+                      child: SingleChildScrollView(
+                        controller: horizontalScrollController,
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          spacing: 12,
+                          children:
+                              (faq == false && quiz == false
+                                      ? [
+                                        'Jogadores',
+                                        'Últimos jogos',
+                                        'Resultados da equipe',
+                                        'Faq',
+                                        'Quiz',
+                                      ]
+                                      : faq == true
+                                      ? List<String>.generate(
+                                        8,
+                                        (i) => '${i + 1}',
+                                      )
+                                      : ['a', 'b', 'c', 'd', 'S'])
+                                  .map(
+                                    (text) => Container(
+                                      child: buildOptionButton(text),
+                                    ),
+                                  )
+                                  .toList(),
+                        ),
+                      ),
+                    ),
+
+                    if (showLeftShadow)
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Container(
+                          width: 24,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [
+                                Theme.of(context).scaffoldBackgroundColor,
+                                Theme.of(
+                                  context,
+                                ).scaffoldBackgroundColor.withAlpha(0),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+
+                    if (showRightShadow)
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Container(
+                          width: 24,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.centerRight,
+                              end: Alignment.centerLeft,
+                              colors: [
+                                Theme.of(context).scaffoldBackgroundColor,
+                                Theme.of(
+                                  context,
+                                ).scaffoldBackgroundColor.withAlpha(0),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: 65,
-              child: Stack(
-                children: [
-                  Positioned.fill(
-                    child: SingleChildScrollView(
-                      controller: horizontalScrollController,
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        spacing: 12,
-                        children:
-                            (faq == false && quiz == false
-                                    ? [
-                                      'Jogadores',
-                                      'Últimos jogos',
-                                      'Resultados da equipe',
-                                      'Faq',
-                                      'Quiz',
-                                    ]
-                                    : faq == true
-                                    ? List<String>.generate(
-                                      8,
-                                      (i) => '${i + 1}',
-                                    )
-                                    : ['a', 'b', 'c', 'd', 'S'])
-                                .map(
-                                  (text) =>
-                                      Container(child: buildOptionButton(text)),
-                                )
-                                .toList(),
+              Container(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: TextField(
+                  controller: textFieldController,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(left: 24),
+                    hintText: "Digite sua mensagem",
+                    hintStyle: TextStyle(color: Colors.grey),
+                    suffixIcon: Container(
+                      width: 40,
+                      height: 40,
+                      margin: EdgeInsets.only(right: 8),
+                      padding: EdgeInsets.all(0),
+                      child: IconButton(
+                        style: appThemeManager.iconButtonStyle,
+                        onPressed:
+                            buttons == true
+                                ? () {
+                                  String texto = textFieldController.text;
+                                  textFieldController.clear();
+                                  userClick(texto);
+                                }
+                                : null,
+                        icon: Icon(
+                          Icons.send_rounded,
+                          color:
+                              buttons == true
+                                  ? appThemeManager.mainColor
+                                  : AppColors.lightBlack,
+                          size: 24,
+                        ),
                       ),
                     ),
                   ),
-
-                  if (showLeftShadow)
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Container(
-                        width: 24,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: [
-                              Theme.of(context).scaffoldBackgroundColor,
-                              Theme.of(
-                                context,
-                              ).scaffoldBackgroundColor.withAlpha(0),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-
-                  if (showRightShadow)
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Container(
-                        width: 24,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.centerRight,
-                            end: Alignment.centerLeft,
-                            colors: [
-                              Theme.of(context).scaffoldBackgroundColor,
-                              Theme.of(
-                                context,
-                              ).scaffoldBackgroundColor.withAlpha(0),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
