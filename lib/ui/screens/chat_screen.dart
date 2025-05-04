@@ -313,13 +313,14 @@ class ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
 
   Widget getDefaultResponse() {
     return Text(
-      'Desculpe, não entendi. Por favor utilize os botões de mensagem ou digite de acordo com os botões. a',
+      'Desculpe, não entendi. Por favor, utilize os botões de mensagem ou digite de acordo com os botões.',
     );
   }
 
   Widget handleReponses(String option) {
     for (int i = 0; i < respostas.length; i++) {
-      if (respostas.keys.elementAt(i).toLowerCase() == option.toLowerCase()) {
+      if (respostas.keys.elementAt(i).toLowerCase().withoutDiacriticalMarks ==
+          option.toLowerCase().withoutDiacriticalMarks) {
         return buildResponseForOption(i);
       }
     }
