@@ -32,7 +32,8 @@ Este projeto é um aplicativo mobile desenvolvido em Flutter que oferece uma exp
 * GitHub Actions para CI/CD (build de APK)
 
 ## Interface
-Utilizei dois temas de cores para a interface, um usando o preto e branco com o contraste da cor dourada, que tive a ideia pelo instagram da Furia (onde os destaques são na cor dourada, e em algumas camisas e outras postagens), e o outro tema somente com a cor preto e branco. 
+O aplicativo possui duas telas. 
+Foi utilizado dois temas de cores para a interface, um usando o preto e branco com o contraste da cor dourada, que tive a ideia pelo instagram da Furia (onde os destaques são na cor dourada, e em algumas camisas e outras postagens), e o outro tema somente com a cor preto e branco. 
 
 ## Tela inicial
 
@@ -40,6 +41,13 @@ Utilizei dois temas de cores para a interface, um usando o preto e branco com o 
 | ----------- | ----------- | ----------- |
 | Tela incial | <img src="https://github.com/user-attachments/assets/4f5bca42-7f8f-4c3f-a439-38bc568767ee" width="300"> | <img src="https://github.com/user-attachments/assets/e1879af5-0fab-49e7-b691-c31034ef3be0" width="300"> |
 | Tela do chat | <img src="https://github.com/user-attachments/assets/0a7c8e8b-daba-4bcd-ba22-7b0e39bf047d" width="300"> | <img src="https://github.com/user-attachments/assets/c7ac3990-2514-4037-9830-e48cba173ddc" width="300"> |
+
+### Responsividade
+Possui responsividade para telas de diferentes tamanhos/formatos. 
+
+![Screenshot 2025-05-04 132015](https://github.com/user-attachments/assets/a062093b-a9b1-4b3f-80e5-cc1f45758137)
+![screenshot-1746375689542](https://github.com/user-attachments/assets/b47505a9-f0a2-4a4e-8015-adda9501be28)
+
 
 ### Ao iniciar o chat
 Quando o chat é iniciado leva 1 segundo para o bot ficar online (simulando um sistema real)
