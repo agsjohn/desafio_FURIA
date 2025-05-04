@@ -13,7 +13,7 @@ AppBar getAppBar({required BuildContext context, String? title}) {
     surfaceTintColor: Colors.black,
     shadowColor: appThemeManager.mainColor,
     automaticallyImplyLeading: false,
-    toolbarHeight: 70,
+    toolbarHeight: 65,
     leadingWidth: 200,
     leading: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
