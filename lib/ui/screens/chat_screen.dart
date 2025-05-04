@@ -283,8 +283,7 @@ class ChatScreenState extends State<ChatScreen> {
 
   Widget getDefaultResponse() {
     return Text(
-      'Desculpe, não entendi.',
-      style: TextStyle(color: Colors.black),
+      'Desculpe, não entendi. Por favor utilize os botões de mensagem ou digite de acordo com os botões. a',
     );
   }
 
