@@ -109,11 +109,11 @@ class ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                 ),
               ),
               SizedBox(
-                height: altura < 700 ? altura * 0.085 : 60,
-                child: Stack(
-                  children: [
-                    Positioned.fill(
-                      child: SingleChildScrollView(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Stack(
+                    children: [
+                      SingleChildScrollView(
                         controller: horizontalScrollController,
                         scrollDirection: Axis.horizontal,
                         child: Row(
@@ -134,73 +134,73 @@ class ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                       )
                                       : ['a', 'b', 'c', 'd', 'S'])
                                   .map(
-                                    (text) => Container(
-                                      child: buildOptionButton(text, altura),
-                                    ),
+                                    (text) => buildOptionButton(text, altura),
                                   )
                                   .toList(),
                         ),
                       ),
-                    ),
-
-                    if (showLeftShadow)
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Container(
-                          width: 24,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              colors: [
-                                Theme.of(context).scaffoldBackgroundColor,
-                                Theme.of(
-                                  context,
-                                ).scaffoldBackgroundColor.withAlpha(0),
-                              ],
+                      if (showLeftShadow)
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: IgnorePointer(
+                            child: Container(
+                              width: 24,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                  colors: [
+                                    Theme.of(context).scaffoldBackgroundColor,
+                                    Theme.of(
+                                      context,
+                                    ).scaffoldBackgroundColor.withAlpha(0),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-
-                    if (showRightShadow)
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Container(
-                          width: 24,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.centerRight,
-                              end: Alignment.centerLeft,
-                              colors: [
-                                Theme.of(context).scaffoldBackgroundColor,
-                                Theme.of(
-                                  context,
-                                ).scaffoldBackgroundColor.withAlpha(0),
-                              ],
+                      if (showRightShadow)
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: IgnorePointer(
+                            child: Container(
+                              width: 24,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.centerRight,
+                                  end: Alignment.centerLeft,
+                                  colors: [
+                                    Theme.of(context).scaffoldBackgroundColor,
+                                    Theme.of(
+                                      context,
+                                    ).scaffoldBackgroundColor.withAlpha(0),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Container(
                 padding: EdgeInsets.only(bottom: 8),
                 child: SizedBox(
-                  height: altura < 700 ? altura * 0.075 : 52,
+                  height:
+                      altura <= 440
+                          ? 32
+                          : altura >= 700
+                          ? 52
+                          : altura * 0.074,
                   child: TextField(
-                    style: TextStyle(
-                      fontSize: altura < 700 ? altura * 0.023 : 16,
-                    ),
+                    style: TextStyle(fontSize: 16),
                     controller: textFieldController,
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.only(left: 24),
+                      contentPadding: EdgeInsets.only(left: 16),
                       hintText: "Digite sua mensagem",
-                      hintStyle: TextStyle(
-                        color: Colors.grey,
-                        fontSize: altura < 700 ? altura * 0.023 : 16,
-                      ),
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 16),
                       suffixIcon: Container(
                         padding: EdgeInsets.only(right: 8),
                         child: IconButton(
@@ -220,7 +220,12 @@ class ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                 buttons == true
                                     ? appThemeManager.mainColor
                                     : AppColors.lightBlack,
-                            size: altura < 700 ? altura * 0.035 : 24,
+                            size:
+                                altura <= 500
+                                    ? 17
+                                    : altura >= 700
+                                    ? 24
+                                    : altura * 0.034,
                           ),
                         ),
                       ),
@@ -499,34 +504,39 @@ class ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
   }
 
   Widget buildOptionButton(String text, double altura) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: OutlinedButton(
-        style:
-            buttons == true
-                ? ButtonStyle(
-                  padding: WidgetStatePropertyAll(
-                    EdgeInsets.symmetric(
-                      horizontal: altura < 700 ? altura * 0.02 : 16,
-                    ),
-                  ),
-                )
-                : ButtonStyle(
-                  padding: WidgetStatePropertyAll(
-                    EdgeInsets.symmetric(
-                      horizontal: altura < 700 ? altura * 0.02 : 16,
-                    ),
-                  ),
-                  side: appThemeManager.outlineButtonStyle.side,
-                  foregroundColor:
-                      appThemeManager.outlineButtonStyle.foregroundColor,
-                  backgroundColor:
-                      appThemeManager.outlineButtonStyle.backgroundColor,
-                ),
-        onPressed: () => buttons == true ? userClick(text) : null,
-        child: Text(
-          text,
-          style: TextStyle(fontSize: altura < 700 ? altura * 0.02 : 14),
+    double buttonSize;
+    if (altura <= 500) {
+      buttonSize = 37;
+    } else if (altura >= 700) {
+      buttonSize = 52;
+    } else {
+      buttonSize = altura * 0.074;
+    }
+
+    return SizedBox(
+      height: buttonSize,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: OutlinedButton(
+          style: ButtonStyle(
+            padding: WidgetStatePropertyAll(
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+            ),
+            backgroundColor:
+                buttons == false
+                    ? appThemeManager.outlineButtonStyle.backgroundColor
+                    : null,
+            foregroundColor:
+                buttons == false
+                    ? appThemeManager.outlineButtonStyle.foregroundColor
+                    : null,
+            side:
+                buttons == false
+                    ? appThemeManager.outlineButtonStyle.side
+                    : null,
+          ),
+          onPressed: buttons == true ? () => userClick(text) : null,
+          child: Text(text, style: const TextStyle(fontSize: 14)),
         ),
       ),
     );
